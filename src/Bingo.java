@@ -181,6 +181,7 @@ public class Bingo extends JFrame {
 		
 		Exit = new JButton("Exit");
 		contentPane.add(Exit);
+		
 	}
 
 }
