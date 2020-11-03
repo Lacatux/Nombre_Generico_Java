@@ -78,10 +78,6 @@ public class Bingo extends JFrame {
 		contentPane.setLayout(new GridLayout(5, 7, 0, 0));
 		
 		Num1 = new JButton("Num1");
-		Num1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		contentPane.add(Num1);
 		
 		Num2 = new JButton("Num2");
@@ -103,10 +99,6 @@ public class Bingo extends JFrame {
 		contentPane.add(NuevaPartida);
 		
 		Num6 = new JButton("Num6");
-		Num6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		contentPane.add(Num6);
 		
 		Num7 = new JButton("Num7");
@@ -125,8 +117,6 @@ public class Bingo extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		NumeroNuevo = new JLabel("Numero Nuevo");
-		NumeroNuevo.setForeground(Color.BLACK);
-		NumeroNuevo.setBackground(new Color(255, 200, 0));
 		contentPane.add(NumeroNuevo);
 		
 		Num11 = new JButton("Num11");
@@ -148,7 +138,6 @@ public class Bingo extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		UltimoNum = new JLabel("Ultimo Numero");
-		UltimoNum.setBackground(Color.CYAN);
 		contentPane.add(UltimoNum);
 		
 		Num16 = new JButton("Num16");
