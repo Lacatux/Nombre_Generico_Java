@@ -23,7 +23,7 @@ public class Bingo extends JFrame {
 				}
 			}
 		});
-		System.out.println();
+		System.out.println("hola");
 	}
 
 	/**
