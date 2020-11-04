@@ -9,6 +9,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 
 public class Bingo extends JFrame {
@@ -39,11 +41,11 @@ public class Bingo extends JFrame {
 	private JButton btn23;
 	private JButton btn24;
 	private JButton btn25;
-	private JButton Siguiente;
-	private JButton NuevaPartida;
-	private JLabel NumeroNuevo;
-	private JLabel UltimoNum;
-	private JButton Exit;
+	private JButton siguiente;
+	private JButton nuevaPartida;
+	private JLabel numeroNuevo;
+	private JLabel ultimoNum;
+	private JButton exit;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
@@ -96,8 +98,8 @@ public class Bingo extends JFrame {
 		lblNewLabel = new JLabel("");
 		contentPane.add(lblNewLabel);
 		
-		NuevaPartida = new JButton("Nueva Partida");
-		contentPane.add(NuevaPartida);
+		nuevaPartida = new JButton("Nueva Partida");
+		contentPane.add(nuevaPartida);
 		
 		btn6 = new JButton("");
 		contentPane.add(btn6);
@@ -117,8 +119,8 @@ public class Bingo extends JFrame {
 		lblNewLabel_1 = new JLabel("");
 		contentPane.add(lblNewLabel_1);
 		
-		NumeroNuevo = new JLabel("Numero Nuevo");
-		contentPane.add(NumeroNuevo);
+		numeroNuevo = new JLabel("Numero Nuevo");
+		contentPane.add(numeroNuevo);
 		
 		btn11 = new JButton("");
 		contentPane.add(btn11);
@@ -138,8 +140,8 @@ public class Bingo extends JFrame {
 		lblNewLabel_2 = new JLabel("");
 		contentPane.add(lblNewLabel_2);
 		
-		UltimoNum = new JLabel("Ultimo Numero");
-		contentPane.add(UltimoNum);
+		ultimoNum = new JLabel("Ultimo Numero");
+		contentPane.add(ultimoNum);
 		
 		btn16 = new JButton("");
 		contentPane.add(btn16);
@@ -177,12 +179,14 @@ public class Bingo extends JFrame {
 		btn25 = new JButton("");
 		contentPane.add(btn25);
 		
-		Siguiente = new JButton("Siguiente Número");
-		contentPane.add(Siguiente);
+		siguiente = new JButton("Siguiente Número");
+		contentPane.add(siguiente);
 		
-		Exit = new JButton("Salir");
-		contentPane.add(Exit);
+		exit = new JButton("Salir");
+		contentPane.add(exit);
 		
+		inicializar();
+		registrarEventos();
 	}
 	
 	private void inicializar() {
@@ -214,11 +218,35 @@ public class Bingo extends JFrame {
 		arrayBotones[22] = btn23;
 		arrayBotones[23] = btn24;
 		arrayBotones[24] = btn25;
-				
+		
+		estadoBotones(true);
 	}
 	
-	public static void registrarEventos() {
+	private void registrarEventos() {
 		
+		exit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				if (JOptionPane.showConfirmDialog(Bingo.this,
+						"¿Seguro que quieres salir?",
+						"Salir",
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
+
+			}
+		});
+		
+	}
+	
+	public void estadoBotones(boolean estado) {
+
+		for (int i = 0; i < arrayBotones.length; i++) {
+			arrayBotones[i].setEnabled(estado);	
+		}
+
 	}
 
 }
