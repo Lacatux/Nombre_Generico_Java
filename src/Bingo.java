@@ -25,6 +25,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Toolkit;
 
+@SuppressWarnings("unused")
 public class Bingo extends JFrame {
 
 	private JPanel contentPane;
@@ -70,7 +71,7 @@ public class Bingo extends JFrame {
 	private ImageIcon logo = new ImageIcon("C:\\Users\\dam1-jaime\\github\\Nombre_Generico_Java\\images\\baba.png");
 	private JLabel lbltiempo1;
 	private JLabel lbltiempo2;
-	private int[] numArray;
+	private int[] arrayNumeros;
 	private Random rnd = new Random();
 
 	/**
@@ -103,57 +104,67 @@ public class Bingo extends JFrame {
 		setContentPane(contentPane);
 		this.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 		contentPane.setLayout(new GridLayout(0, 8, 0, 0));
-		
+
 		btn1 = new JButton("");
+		btn1.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn1);
-		
+
 		btn2 = new JButton("");
+		btn2.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn2);
-		
+
 		btn3 = new JButton("");
+		btn3.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn3);
-		
+
 		btn4 = new JButton("");
+		btn4.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn4);
-		
+
 		btn5 = new JButton("");
+		btn5.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn5);
-		
+
 		lbl1 = new JLabel("");
 		lbl1.setBackground(new Color(41, 151, 219));
 		lbl1.setOpaque(true);
 		contentPane.add(lbl1);
-		
+
 		lbltiempo1 = new JLabel("");
 		lbltiempo1.setBackground(new Color(65, 105, 225));
 		lbltiempo1.setOpaque(true);
 		contentPane.add(lbltiempo1);
-		
+
 		lbltiempo2 = new JLabel("");
 		lbltiempo2.setBackground(new Color(65, 105, 225));
 		lbltiempo2.setOpaque(true);
 		contentPane.add(lbltiempo2);
-		
+
 		btn6 = new JButton("");
+		btn6.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn6);
-		
+
 		btn7 = new JButton("");
+		btn7.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn7);
-		
+
 		btn8 = new JButton("");
+		btn8.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn8);
-		
+
 		btn9 = new JButton("");
+		btn9.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn9);
-		
+
 		btn10 = new JButton("");
+		btn10.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn10);
-		
+
 		lbl4 = new JLabel("");
 		lbl4.setBackground(new Color(41, 151, 219));
 		lbl4.setOpaque(true);
 		contentPane.add(lbl4);
-		
+
 		lbltxtNuevonum = new JLabel("Nuevo N\u00FAmero");
 		lbltxtNuevonum.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lbltxtNuevonum.setBackground(new Color(152, 251, 152));
@@ -161,7 +172,7 @@ public class Bingo extends JFrame {
 		lbltxtNuevonum.setHorizontalAlignment(SwingConstants.CENTER);
 		lbltxtNuevonum.setOpaque(true);
 		contentPane.add(lbltxtNuevonum);
-		
+
 		lbltxtUltimonum = new JLabel("\u00DAltimo N\u00FAmero");
 		lbltxtUltimonum.setBackground(new Color(216, 191, 216));
 		lbltxtUltimonum.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -169,107 +180,121 @@ public class Bingo extends JFrame {
 		lbltxtUltimonum.setHorizontalAlignment(SwingConstants.CENTER);
 		lbltxtUltimonum.setOpaque(true);
 		contentPane.add(lbltxtUltimonum);
-		
+
 		btn11 = new JButton("");
+		btn11.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn11);
-		
+
 		btn12 = new JButton("");
+		btn12.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn12);
-		
+
 		free = new JLabel("");
 		free.setHorizontalAlignment(SwingConstants.CENTER);
 		free.setIcon(logo);
 		contentPane.add(free);
-		
+
 		btn14 = new JButton("");
+		btn14.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn14);
-		
+
 		btn15 = new JButton("");
+		btn15.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn15);
-		
+
 		lbl5 = new JLabel("");
 		lbl5.setBackground(new Color(41, 151, 219));
 		lbl5.setOpaque(true);
 		contentPane.add(lbl5);
-		
+
 		lblnumNuevo = new JLabel("0");
 		lblnumNuevo.setBackground(new Color(152, 251, 152));
 		lblnumNuevo.setFont(new Font("Tahoma", Font.BOLD, 69));
 		lblnumNuevo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblnumNuevo.setOpaque(true);
 		contentPane.add(lblnumNuevo);
-		
+
 		lblnumUltimo = new JLabel("0");
 		lblnumUltimo.setBackground(new Color(216, 191, 216));
 		lblnumUltimo.setFont(new Font("Tahoma", Font.BOLD, 69));
 		lblnumUltimo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblnumUltimo.setOpaque(true);
 		contentPane.add(lblnumUltimo);
-		
+
 		btn16 = new JButton("");
+		btn16.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn16);
-		
+
 		btn17 = new JButton("");
+		btn17.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn17);
-		
+
 		btn18 = new JButton("");
+		btn18.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn18);
-		
+
 		btn19 = new JButton("");
+		btn19.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn19);
-		
+
 		btn20 = new JButton("");
+		btn20.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn20);
-		
+
 		lbl6 = new JLabel("");
 		lbl6.setBackground(new Color(41, 151, 219));
 		lbl6.setOpaque(true);
 		contentPane.add(lbl6);
-		
+
 		lbl7 = new JLabel();
 		lbl7.setOpaque(true);
 		contentPane.add(lbl7);
-		
+
 		lbl8 = new JLabel("");
 		lbl8.setOpaque(true);
 		contentPane.add(lbl8);
-		
+
 		btn21 = new JButton("");
+		btn21.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn21);
-		
+
 		btn22 = new JButton("");
+		btn22.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn22);
-		
+
 		btn23 = new JButton("");
+		btn23.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn23);
-		
+
 		btn24 = new JButton("");
+		btn24.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn24);
-		
+
 		btn25 = new JButton("");
+		btn25.setFont(new Font("Tahoma", Font.BOLD, 69));
 		contentPane.add(btn25);
-		
+
 		lbl9 = new JLabel("");
 		lbl9.setBackground(new Color(41, 151, 219));
 		lbl9.setOpaque(true);
 		contentPane.add(lbl9);
-		
+
 		nuevaPartida = new JButton("Nueva Partida");
 		nuevaPartida.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(nuevaPartida);
-		
+
 		exit = new JButton("Salir");
 		exit.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(exit);
-		
+
 		inicializar();
 		registrarEventos();
 	}
-	
+
 	private void inicializar() {
-		
+
 		arrayBotones = new JButton[24];
-		
+
 		arrayBotones[0] = btn1;
 		arrayBotones[1] = btn2;
 		arrayBotones[2] = btn3;
@@ -294,16 +319,16 @@ public class Bingo extends JFrame {
 		arrayBotones[21] = btn23;
 		arrayBotones[22] = btn24;
 		arrayBotones[23] = btn25;
-		
+
 		estadoBotones(true);
 		numerosTablero(arrayBotones);
-		
+
 	}
-	
+
 	private void registrarEventos() {
-		
+
 		exit.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -316,9 +341,9 @@ public class Bingo extends JFrame {
 
 			}
 		});
-		
+
 	}
-	
+
 	public void estadoBotones(boolean estado) {
 
 		for (int i = 0; i < arrayBotones.length; i++) {
@@ -326,34 +351,51 @@ public class Bingo extends JFrame {
 		}
 
 	}
-	
+
 	private void numerosTablero(JButton[] arrayBotones) {
-		
-		numArray = new int[24];
-		for (int i = 0; i < numArray.length; i++) {
-			numArray[i] = 0;
+
+		arrayNumeros = new int[24];
+		for (int i = 0; i < arrayNumeros.length; i++) {
+			arrayNumeros[i] = 0;
 		}
 		String num, numfin = null;
 		int numRnd = 0;
-		
-		for (int i = 0; i < numArray.length; i++) { //ERROR EN CREACION DE LOS NUMERSOS
-			
-			num = Integer.toString(numArray[i]);
-			for (int j = 0; j < numArray.length; j++) {
-				//ERROR EMPIEZA AQUI
-				if (numRnd != numArray[j]) {
-					numArray[i] = rnd.nextInt(98 + 1);
-					if (numArray[i] < 10) {
-						numfin = "0" + num;
-					} else {
-						numfin = num;
+		boolean repetido;
+
+
+		for (int i = 0; i < arrayNumeros.length; i++) {
+
+			if (i != 0) {
+
+
+				do {
+					repetido = false;
+					numRnd = rnd.nextInt(98) + 1;
+					for (int j = 0; j < i; j++) {
+						if (numRnd == arrayNumeros[j]) {
+							repetido = true;
+						} 
 					}
-					arrayBotones[i].setText(numfin);
-				} 
-				//TERMINA AQUI
+
+				} while (repetido);
+				arrayNumeros[i] = numRnd;
+
+			} else {
+				arrayNumeros[i] = rnd.nextInt(98) + 1;
 			}
+
+			num = Integer.toString(arrayNumeros[i]);
+			if (arrayNumeros[i] < 10) {
+				numfin = "0" + num;
+			} else {
+				numfin = num;
+			}
+			arrayBotones[i].setText(numfin);
+
 		}
 		
 	}
+
+
 
 }
