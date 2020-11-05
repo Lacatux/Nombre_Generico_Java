@@ -18,10 +18,12 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.Random;
 import java.awt.Window.Type;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 
 public class Bingo extends JFrame {
 
@@ -51,23 +53,25 @@ public class Bingo extends JFrame {
 	private JButton btn23;
 	private JButton btn24;
 	private JButton btn25;
-	private JButton siguiente;
 	private JButton nuevaPartida;
-	private JLabel numeroNuevo;
-	private JLabel ultimoNum;
+	private JLabel lbltxtNuevonum;
+	private JLabel lbltxtUltimonum;
 	private JButton exit;
 	private JLabel lbl1;
-	private JLabel lbl3;
 	private JLabel lbl4;
 	private JLabel lbl5;
-	private JLabel lbl8;
-	private JButton[] arrayBotones;
-	private JLabel lblNewLabel_6;
-	private JLabel lblNewLabel_7;
-	private JLabel lbl7;
 	private JLabel lbl6;
+	private JLabel lbl9;
+	private JButton[] arrayBotones;
+	private JLabel lblnumNuevo;
+	private JLabel lblnumUltimo;
+	private JLabel lbl8;
+	private JLabel lbl7;
 	private ImageIcon logo = new ImageIcon("C:\\Users\\dam1-jaime\\github\\Nombre_Generico_Java\\images\\baba.png");
-	private JLabel lbl2;
+	private JLabel lbltiempo1;
+	private JLabel lbltiempo2;
+	private int[] numArray;
+	private Random rnd = new Random();
 
 	/**
 	 * Launch the application.
@@ -89,6 +93,8 @@ public class Bingo extends JFrame {
 	 * Create the frame.
 	 */
 	public Bingo() {
+		setTitle("Bingo");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\dam1-jaime\\github\\Nombre_Generico_Java\\images\\babaicon.png"));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 650);
@@ -114,14 +120,19 @@ public class Bingo extends JFrame {
 		contentPane.add(btn5);
 		
 		lbl1 = new JLabel("");
+		lbl1.setBackground(new Color(41, 151, 219));
+		lbl1.setOpaque(true);
 		contentPane.add(lbl1);
 		
-		lbl2 = new JLabel("");
-		contentPane.add(lbl2);
+		lbltiempo1 = new JLabel("");
+		lbltiempo1.setBackground(new Color(65, 105, 225));
+		lbltiempo1.setOpaque(true);
+		contentPane.add(lbltiempo1);
 		
-		siguiente = new JButton("Siguiente Número");
-		siguiente.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		contentPane.add(siguiente);
+		lbltiempo2 = new JLabel("");
+		lbltiempo2.setBackground(new Color(65, 105, 225));
+		lbltiempo2.setOpaque(true);
+		contentPane.add(lbltiempo2);
 		
 		btn6 = new JButton("");
 		contentPane.add(btn6);
@@ -138,24 +149,26 @@ public class Bingo extends JFrame {
 		btn10 = new JButton("");
 		contentPane.add(btn10);
 		
-		lbl3 = new JLabel("");
-		contentPane.add(lbl3);
+		lbl4 = new JLabel("");
+		lbl4.setBackground(new Color(41, 151, 219));
+		lbl4.setOpaque(true);
+		contentPane.add(lbl4);
 		
-		numeroNuevo = new JLabel("Nuevo N\u00FAmero");
-		numeroNuevo.setFont(new Font("Tahoma", Font.BOLD, 20));
-		numeroNuevo.setBackground(new Color(152, 251, 152));
-		numeroNuevo.setVerticalAlignment(SwingConstants.BOTTOM);
-		numeroNuevo.setHorizontalAlignment(SwingConstants.CENTER);
-		numeroNuevo.setOpaque(true);
-		contentPane.add(numeroNuevo);
+		lbltxtNuevonum = new JLabel("Nuevo N\u00FAmero");
+		lbltxtNuevonum.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lbltxtNuevonum.setBackground(new Color(152, 251, 152));
+		lbltxtNuevonum.setVerticalAlignment(SwingConstants.BOTTOM);
+		lbltxtNuevonum.setHorizontalAlignment(SwingConstants.CENTER);
+		lbltxtNuevonum.setOpaque(true);
+		contentPane.add(lbltxtNuevonum);
 		
-		ultimoNum = new JLabel("\u00DAltimo N\u00FAmero");
-		ultimoNum.setBackground(new Color(216, 191, 216));
-		ultimoNum.setFont(new Font("Tahoma", Font.BOLD, 20));
-		ultimoNum.setVerticalAlignment(SwingConstants.BOTTOM);
-		ultimoNum.setHorizontalAlignment(SwingConstants.CENTER);
-		ultimoNum.setOpaque(true);
-		contentPane.add(ultimoNum);
+		lbltxtUltimonum = new JLabel("\u00DAltimo N\u00FAmero");
+		lbltxtUltimonum.setBackground(new Color(216, 191, 216));
+		lbltxtUltimonum.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lbltxtUltimonum.setVerticalAlignment(SwingConstants.BOTTOM);
+		lbltxtUltimonum.setHorizontalAlignment(SwingConstants.CENTER);
+		lbltxtUltimonum.setOpaque(true);
+		contentPane.add(lbltxtUltimonum);
 		
 		btn11 = new JButton("");
 		contentPane.add(btn11);
@@ -174,22 +187,24 @@ public class Bingo extends JFrame {
 		btn15 = new JButton("");
 		contentPane.add(btn15);
 		
-		lbl4 = new JLabel("");
-		contentPane.add(lbl4);
+		lbl5 = new JLabel("");
+		lbl5.setBackground(new Color(41, 151, 219));
+		lbl5.setOpaque(true);
+		contentPane.add(lbl5);
 		
-		lblNewLabel_6 = new JLabel("0");
-		lblNewLabel_6.setBackground(new Color(152, 251, 152));
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 69));
-		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_6.setOpaque(true);
-		contentPane.add(lblNewLabel_6);
+		lblnumNuevo = new JLabel("0");
+		lblnumNuevo.setBackground(new Color(152, 251, 152));
+		lblnumNuevo.setFont(new Font("Tahoma", Font.BOLD, 69));
+		lblnumNuevo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblnumNuevo.setOpaque(true);
+		contentPane.add(lblnumNuevo);
 		
-		lblNewLabel_7 = new JLabel("0");
-		lblNewLabel_7.setBackground(new Color(216, 191, 216));
-		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 69));
-		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7.setOpaque(true);
-		contentPane.add(lblNewLabel_7);
+		lblnumUltimo = new JLabel("0");
+		lblnumUltimo.setBackground(new Color(216, 191, 216));
+		lblnumUltimo.setFont(new Font("Tahoma", Font.BOLD, 69));
+		lblnumUltimo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblnumUltimo.setOpaque(true);
+		contentPane.add(lblnumUltimo);
 		
 		btn16 = new JButton("");
 		contentPane.add(btn16);
@@ -206,14 +221,18 @@ public class Bingo extends JFrame {
 		btn20 = new JButton("");
 		contentPane.add(btn20);
 		
-		lbl5 = new JLabel("");
-		contentPane.add(lbl5);
-		
-		lbl6 = new JLabel();
+		lbl6 = new JLabel("");
+		lbl6.setBackground(new Color(41, 151, 219));
+		lbl6.setOpaque(true);
 		contentPane.add(lbl6);
 		
-		lbl7 = new JLabel("");
+		lbl7 = new JLabel();
+		lbl7.setOpaque(true);
 		contentPane.add(lbl7);
+		
+		lbl8 = new JLabel("");
+		lbl8.setOpaque(true);
+		contentPane.add(lbl8);
 		
 		btn21 = new JButton("");
 		contentPane.add(btn21);
@@ -230,8 +249,10 @@ public class Bingo extends JFrame {
 		btn25 = new JButton("");
 		contentPane.add(btn25);
 		
-		lbl8 = new JLabel("");
-		contentPane.add(lbl8);
+		lbl9 = new JLabel("");
+		lbl9.setBackground(new Color(41, 151, 219));
+		lbl9.setOpaque(true);
+		contentPane.add(lbl9);
 		
 		nuevaPartida = new JButton("Nueva Partida");
 		nuevaPartida.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -275,6 +296,8 @@ public class Bingo extends JFrame {
 		arrayBotones[23] = btn25;
 		
 		estadoBotones(true);
+		numerosTablero(arrayBotones);
+		
 	}
 	
 	private void registrarEventos() {
@@ -302,6 +325,35 @@ public class Bingo extends JFrame {
 			arrayBotones[i].setEnabled(estado);	
 		}
 
+	}
+	
+	private void numerosTablero(JButton[] arrayBotones) {
+		
+		numArray = new int[24];
+		for (int i = 0; i < numArray.length; i++) {
+			numArray[i] = 0;
+		}
+		String num, numfin = null;
+		int numRnd = 0;
+		
+		for (int i = 0; i < numArray.length; i++) { //ERROR EN CREACION DE LOS NUMERSOS
+			
+			num = Integer.toString(numArray[i]);
+			for (int j = 0; j < numArray.length; j++) {
+				//ERROR EMPIEZA AQUI
+				if (numRnd != numArray[j]) {
+					numArray[i] = rnd.nextInt(98 + 1);
+					if (numArray[i] < 10) {
+						numfin = "0" + num;
+					} else {
+						numfin = num;
+					}
+					arrayBotones[i].setText(numfin);
+				} 
+				//TERMINA AQUI
+			}
+		}
+		
 	}
 
 }
