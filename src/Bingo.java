@@ -68,7 +68,7 @@ public class Bingo extends JFrame {
 	private JLabel lblnumUltimo;
 	private JLabel lbl8;
 	private JLabel lbl7;
-	private ImageIcon logo = new ImageIcon("C:\\Users\\dam1-jaime\\github\\Nombre_Generico_Java\\images\\baba.png");
+	private ImageIcon logo = new ImageIcon("images\\baba.png");
 	private JLabel lbltiempo1;
 	private JLabel lbltiempo2;
 	private int[] arrayNumeros;
@@ -95,7 +95,7 @@ public class Bingo extends JFrame {
 	 */
 	public Bingo() {
 		setTitle("Bingo");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\dam1-jaime\\github\\Nombre_Generico_Java\\images\\babaicon.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\babaicon.png"));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 650);
