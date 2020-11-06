@@ -155,6 +155,7 @@ public class Bingo extends JFrame {
 		contentPane.add(btn6);
 
 		btn7 = new JButton("");
+		btn7.setBackground(new Color(255, 248, 220));
 		btn7.setFont(new Font("Tahoma", Font.BOLD, 69));
 		btn7.setOpaque(true);
 		contentPane.add(btn7);
@@ -381,9 +382,10 @@ public class Bingo extends JFrame {
 					// DESABILITACION DE BOTONES
 					JButton btn;
 					btn=(JButton)e.getSource();
-					
 					btn.setEnabled(false);
-
+					if (!btn.isEnabled()) {
+						btn.setBackground(new Color (144,238,144));
+					}
 				}
 				
 			});
