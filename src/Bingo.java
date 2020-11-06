@@ -15,10 +15,13 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.Frame;
+
 import javax.swing.ImageIcon;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.Arrays;
+import java.util.EventObject;
 import java.util.Random;
 import java.awt.Window.Type;
 import java.awt.GridBagLayout;
@@ -287,6 +290,10 @@ public class Bingo extends JFrame {
 		exit = new JButton("Salir");
 		exit.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(exit);
+		
+
+
+		
 
 		inicializar();
 		registrarEventos();
@@ -341,7 +348,24 @@ public class Bingo extends JFrame {
 				}
 
 			}
+
 		});
+		for (int i = 0; i < arrayBotones.length; i++) {
+			arrayBotones[i].addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// DESABILITACION DE BOTONES
+					JButton btn;
+					btn=(JButton)e.getSource();
+					
+					btn.setEnabled(false);
+
+				}
+				
+			});
+
+		}
 
 	}
 
@@ -386,7 +410,7 @@ public class Bingo extends JFrame {
 				arrayNumeros[i] = rnd.nextInt(98) + 1;
 			}
 
-			
+
 
 		}
 		for (int i = 0; i < 5; i++) {
@@ -396,7 +420,7 @@ public class Bingo extends JFrame {
 		for (int i = 0; i < 5; i++) {
 			arrayNumeros[i] = numerosCinco[i];
 		}
-		
+
 		for (int i = 0; i < 5; i++) {
 			numerosCinco[i] = arrayNumeros[i+5];
 		}
@@ -404,7 +428,7 @@ public class Bingo extends JFrame {
 		for (int i = 0; i < 5; i++) {
 			arrayNumeros[i+5] = numerosCinco[i];
 		}
-		
+
 		for (int i = 0; i < 4; i++) {
 			numerosCinco[i] = arrayNumeros[i+10];
 		}
@@ -412,7 +436,7 @@ public class Bingo extends JFrame {
 		for (int i = 0; i < 4; i++) {
 			arrayNumeros[i+10] = numerosCinco[i];
 		}
-		
+
 		for (int i = 0; i < 5; i++) {
 			numerosCinco[i] = arrayNumeros[i+14];
 		}
@@ -420,7 +444,7 @@ public class Bingo extends JFrame {
 		for (int i = 0; i < 5; i++) {
 			arrayNumeros[i+14] = numerosCinco[i];
 		}
-		
+
 		for (int i = 0; i < 5; i++) {
 			numerosCinco[i] = arrayNumeros[i+19];
 		}
@@ -428,7 +452,7 @@ public class Bingo extends JFrame {
 		for (int i = 0; i < 5; i++) {
 			arrayNumeros[i+19] = numerosCinco[i];
 		}
-		
+
 		for (int i = 0; i < arrayBotones.length; i++) {
 			num = Integer.toString(arrayNumeros[i]);
 			if (arrayNumeros[i] < 10) {
@@ -439,7 +463,6 @@ public class Bingo extends JFrame {
 			arrayBotones[i].setText(numfin);
 		}
 	}
-
 
 
 }
