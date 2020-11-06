@@ -58,7 +58,7 @@ public class Bingo extends JFrame {
 	private JButton btn23;
 	private JButton btn24;
 	private JButton btn25;
-	private JButton nuevaPartida;
+	private JButton btnNueva;
 	private JLabel lbltxtNuevonum;
 	private JLabel lbltxtUltimonum;
 	private JButton exit;
@@ -111,22 +111,27 @@ public class Bingo extends JFrame {
 
 		btn1 = new JButton("");
 		btn1.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn1.setOpaque(true);
 		contentPane.add(btn1);
 
 		btn2 = new JButton("");
 		btn2.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn2.setOpaque(true);
 		contentPane.add(btn2);
 
 		btn3 = new JButton("");
 		btn3.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn3.setOpaque(true);
 		contentPane.add(btn3);
 
 		btn4 = new JButton("");
 		btn4.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn4.setOpaque(true);
 		contentPane.add(btn4);
 
 		btn5 = new JButton("");
 		btn5.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn5.setOpaque(true);
 		contentPane.add(btn5);
 
 		lbl1 = new JLabel("");
@@ -146,22 +151,27 @@ public class Bingo extends JFrame {
 
 		btn6 = new JButton("");
 		btn6.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn6.setOpaque(true);
 		contentPane.add(btn6);
 
 		btn7 = new JButton("");
 		btn7.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn7.setOpaque(true);
 		contentPane.add(btn7);
 
 		btn8 = new JButton("");
 		btn8.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn8.setOpaque(true);
 		contentPane.add(btn8);
 
 		btn9 = new JButton("");
 		btn9.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn9.setOpaque(true);
 		contentPane.add(btn9);
 
 		btn10 = new JButton("");
 		btn10.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn10.setOpaque(true);
 		contentPane.add(btn10);
 
 		lbl4 = new JLabel("");
@@ -187,10 +197,12 @@ public class Bingo extends JFrame {
 
 		btn11 = new JButton("");
 		btn11.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn11.setOpaque(true);
 		contentPane.add(btn11);
 
 		btn12 = new JButton("");
 		btn12.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn12.setOpaque(true);
 		contentPane.add(btn12);
 
 		free = new JLabel("");
@@ -200,10 +212,12 @@ public class Bingo extends JFrame {
 
 		btn14 = new JButton("");
 		btn14.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn14.setOpaque(true);
 		contentPane.add(btn14);
 
 		btn15 = new JButton("");
 		btn15.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn15.setOpaque(true);
 		contentPane.add(btn15);
 
 		lbl5 = new JLabel("");
@@ -227,22 +241,26 @@ public class Bingo extends JFrame {
 
 		btn16 = new JButton("");
 		btn16.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn16.setOpaque(true);
 		contentPane.add(btn16);
 
 		btn17 = new JButton("");
 		btn17.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn17.setOpaque(true);
 		contentPane.add(btn17);
 
 		btn18 = new JButton("");
 		btn18.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn18.setOpaque(true);
 		contentPane.add(btn18);
 
 		btn19 = new JButton("");
 		btn19.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn19.setOpaque(true);
 		contentPane.add(btn19);
 
 		btn20 = new JButton("");
-		btn20.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn20.setFont(new Font("Tahoma", Font.BOLD, 69));btn20.setOpaque(true);
 		contentPane.add(btn20);
 
 		lbl6 = new JLabel("");
@@ -260,22 +278,27 @@ public class Bingo extends JFrame {
 
 		btn21 = new JButton("");
 		btn21.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn21.setOpaque(true);
 		contentPane.add(btn21);
 
 		btn22 = new JButton("");
 		btn22.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn22.setOpaque(true);
 		contentPane.add(btn22);
 
 		btn23 = new JButton("");
 		btn23.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn23.setOpaque(true);
 		contentPane.add(btn23);
 
 		btn24 = new JButton("");
 		btn24.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn24.setOpaque(true);
 		contentPane.add(btn24);
 
 		btn25 = new JButton("");
 		btn25.setFont(new Font("Tahoma", Font.BOLD, 69));
+		btn25.setOpaque(true);
 		contentPane.add(btn25);
 
 		lbl9 = new JLabel("");
@@ -283,9 +306,9 @@ public class Bingo extends JFrame {
 		lbl9.setOpaque(true);
 		contentPane.add(lbl9);
 
-		nuevaPartida = new JButton("Nueva Partida");
-		nuevaPartida.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		contentPane.add(nuevaPartida);
+		btnNueva = new JButton("Nueva Partida");
+		btnNueva.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		contentPane.add(btnNueva);
 
 		exit = new JButton("Salir");
 		exit.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -328,8 +351,7 @@ public class Bingo extends JFrame {
 		arrayBotones[22] = btn24;
 		arrayBotones[23] = btn25;
 
-		estadoBotones(true);
-		numerosTablero(arrayBotones);
+		estadoBotones(false);
 
 	}
 
@@ -350,6 +372,7 @@ public class Bingo extends JFrame {
 			}
 
 		});
+
 		for (int i = 0; i < arrayBotones.length; i++) {
 			arrayBotones[i].addActionListener(new ActionListener() {
 
@@ -366,13 +389,28 @@ public class Bingo extends JFrame {
 			});
 
 		}
+		
+		btnNueva.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				inicializar();
+				numerosTablero(arrayBotones);
+				estadoBotones(true);
+				btnNueva.setEnabled(false);
+				
+			}
+		});
 
+				
 	}
 
 	public void estadoBotones(boolean estado) {
 
 		for (int i = 0; i < arrayBotones.length; i++) {
-			arrayBotones[i].setEnabled(estado);	
+			arrayBotones[i].setEnabled(estado);
+			arrayBotones[i].setBackground(new Color(240,240,240));
 		}
 
 	}
@@ -390,7 +428,7 @@ public class Bingo extends JFrame {
 
 
 		for (int i = 0; i < arrayNumeros.length; i++) {
-
+			repetido = true;
 			if (i != 0) {
 
 
@@ -463,6 +501,5 @@ public class Bingo extends JFrame {
 			arrayBotones[i].setText(numfin);
 		}
 	}
-
 
 }
