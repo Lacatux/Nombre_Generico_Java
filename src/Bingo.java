@@ -18,6 +18,7 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.Arrays;
 import java.util.Random;
 import java.awt.Window.Type;
 import java.awt.GridBagLayout;
@@ -358,6 +359,7 @@ public class Bingo extends JFrame {
 		for (int i = 0; i < arrayNumeros.length; i++) {
 			arrayNumeros[i] = 0;
 		}
+		int[] numerosCinco = new int[5], numerosCuatro = new int[4];
 		String num, numfin = null;
 		int numRnd = 0;
 		boolean repetido;
@@ -384,6 +386,50 @@ public class Bingo extends JFrame {
 				arrayNumeros[i] = rnd.nextInt(98) + 1;
 			}
 
+			
+
+		}
+		for (int i = 0; i < 5; i++) {
+			numerosCinco[i] = arrayNumeros[i];
+		}
+		Arrays.sort(numerosCinco);
+		for (int i = 0; i < 5; i++) {
+			arrayNumeros[i] = numerosCinco[i];
+		}
+		
+		for (int i = 0; i < 5; i++) {
+			numerosCinco[i] = arrayNumeros[i+5];
+		}
+		Arrays.sort(numerosCinco);
+		for (int i = 0; i < 5; i++) {
+			arrayNumeros[i+5] = numerosCinco[i];
+		}
+		
+		for (int i = 0; i < 4; i++) {
+			numerosCinco[i] = arrayNumeros[i+10];
+		}
+		Arrays.sort(numerosCinco);
+		for (int i = 0; i < 4; i++) {
+			arrayNumeros[i+10] = numerosCinco[i];
+		}
+		
+		for (int i = 0; i < 5; i++) {
+			numerosCinco[i] = arrayNumeros[i+14];
+		}
+		Arrays.sort(numerosCinco);
+		for (int i = 0; i < 5; i++) {
+			arrayNumeros[i+14] = numerosCinco[i];
+		}
+		
+		for (int i = 0; i < 5; i++) {
+			numerosCinco[i] = arrayNumeros[i+19];
+		}
+		Arrays.sort(numerosCinco);
+		for (int i = 0; i < 5; i++) {
+			arrayNumeros[i+19] = numerosCinco[i];
+		}
+		
+		for (int i = 0; i < arrayBotones.length; i++) {
 			num = Integer.toString(arrayNumeros[i]);
 			if (arrayNumeros[i] < 10) {
 				numfin = "0" + num;
@@ -391,9 +437,7 @@ public class Bingo extends JFrame {
 				numfin = num;
 			}
 			arrayBotones[i].setText(numfin);
-
 		}
-		
 	}
 
 
