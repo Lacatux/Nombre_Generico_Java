@@ -373,7 +373,9 @@ public class Bingo extends JFrame {
 			}
 
 		});
-
+		
+		
+		//CODIGO DE JON - DESHABILITA Y CAMBIA EL COLOR
 		for (int i = 0; i < arrayBotones.length; i++) {
 			arrayBotones[i].addActionListener(new ActionListener() {
 

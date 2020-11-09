@@ -1,13 +1,20 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.Random;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
+import java.awt.Toolkit;
 
 public class Bingo extends JFrame {
 
@@ -42,16 +49,19 @@ public class Bingo extends JFrame {
 	private JLabel lbl13;
 	private JLabel lbl12;
 	private JLabel lbl11;
-	private JLabel lbl1;
-	private JLabel lbl2;
+	private JButton btnNueva;
+	private JButton exit;
 	private JLabel lbl3;
 	private JLabel lbl4;
 	private JLabel lbl5;
 	private JLabel lbl6;
 	private JLabel lbl7;
 	private JLabel lbl8;
-	private JLabel lbl9;
-	private JLabel lbl10;
+	private JLabel lblTdig2;
+	private JLabel lblTdig1;
+	private JButton[] arrayBotones;
+	private Random random = new Random();
+	private int[] arrayCarton;
 
 
 	/**
@@ -59,6 +69,7 @@ public class Bingo extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					Bingo frame = new Bingo();
@@ -74,8 +85,10 @@ public class Bingo extends JFrame {
 	 * Create the frame.
 	 */
 	public Bingo() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Jaime Lacabex\\git\\Nombre_Generico_Java\\images\\babaicon.png"));
+		setTitle("Bingo");
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(50, 150, 1350, 650);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -172,26 +185,23 @@ public class Bingo extends JFrame {
 		lbl11 = new JLabel("");
 		contentPane.add(lbl11);
 
-		lbl1 = new JLabel("");
-		lbl1.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(lbl1);
-
-		lbl2 = new JLabel("");
-		lbl2.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(lbl2);
+		btnNueva = new JButton("Nueva Partida");
+		btnNueva.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(btnNueva);
 
 		lbl3 = new JLabel("");
 		lbl3.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lbl3);
 
-		lbl4 = new JLabel("");
+		lbl4 = new JLabel("Nuevo N\u00FAmero");
 		lbl4.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lbl4);
 
 		lbl5 = new JLabel("");
 		contentPane.add(lbl5);
 
-		lbl6 = new JLabel("");
+		lbl6 = new JLabel("Numero Anterior");
+		lbl6.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lbl6);
 
 		lbl7 = new JLabel("");
@@ -200,11 +210,146 @@ public class Bingo extends JFrame {
 		lbl8 = new JLabel("");
 		contentPane.add(lbl8);
 
-		lbl9 = new JLabel("");
-		contentPane.add(lbl9);
+		lblTdig2 = new JLabel("");
+		lblTdig2.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(lblTdig2);
 
-		lbl10 = new JLabel("");
-		contentPane.add(lbl10);
+		lblTdig1 = new JLabel("");
+		contentPane.add(lblTdig1);
+
+		exit = new JButton("Salir");
+		exit.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(exit);
+
+		inicializar();
+		registrarEventos();
+
 	}
+
+	private void inicializar() {
+
+		arrayBotones = new JButton[27];
+
+		arrayBotones[0] = btn1;
+		arrayBotones[1] = btn2;
+		arrayBotones[2] = btn3;
+		arrayBotones[3] = btn4;
+		arrayBotones[4] = btn5;
+		arrayBotones[5] = btn6;
+		arrayBotones[6] = btn7;
+		arrayBotones[7] = btn8;
+		arrayBotones[8] = btn9;
+		arrayBotones[9] = btn10;
+		arrayBotones[10] = btn11;
+		arrayBotones[11] = btn12;
+		arrayBotones[12] = btn13;
+		arrayBotones[13] = btn14;
+		arrayBotones[14] = btn15;
+		arrayBotones[15] = btn16;
+		arrayBotones[16] = btn17;
+		arrayBotones[17] = btn18;
+		arrayBotones[18] = btn19;
+		arrayBotones[19] = btn20;
+		arrayBotones[20] = btn21;
+		arrayBotones[21] = btn22;
+		arrayBotones[22] = btn23;
+		arrayBotones[23] = btn24;
+		arrayBotones[24] = btn25;
+		arrayBotones[25] = btn26;
+		arrayBotones[26] = btn27;
+
+		crearCarton();
+
+	}
+
+	private void registrarEventos() {
+		exit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (JOptionPane.showConfirmDialog(Bingo.this,
+
+						"¿Seguro que quieres salir?",
+						"Salir",
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}				
+			}
+		});
+	}
+
+	private void crearCarton () {
+
+		int[] arrayNumeros = new int[15];
+		arrayCarton = new int[27];
+		int cont = 0, contQ = 0, columna = 0, numRnd = 0;
+
+		//CREACIÓN DE HUECOS EN BLANCO
+
+		for (int i = 0; i < arrayCarton.length; i++) {
+			
+			if (i % 3 == 0 && i != 0) {
+				columna ++;
+			}
+			switch (cont) {
+			case 0:
+				
+				break;
+			case 1:
+				
+				break;
+			case 2:
+				
+				break;
+			case 3:
+				
+				break;
+			case 4:
+				
+				break;
+			case 5:
+				
+				break;
+			case 6:
+				
+				break;
+			case 7:
+				
+				break;
+			case 8:
+				
+				break;
+			}
+			
+		}
+
+		//RELLENADO DEL CARTON
+		for (int i = 0; i < arrayNumeros.length; i++) {
+			do {
+				numRnd = random.nextInt(98) + 1;
+			} while(comprobarArray(arrayNumeros, numRnd, i));
+			arrayNumeros[i] = numRnd;
+		}
+		Arrays.sort(arrayNumeros);
+		for (int i = 0; i < arrayCarton.length; i++) {
+			if (arrayCarton[i] != 0) {
+				arrayCarton[i] = arrayNumeros[cont];
+				cont++;
+			}
+		}
+		
+		 
+
+	}
+
+	public boolean comprobarArray(int[] array, int num, int iArr) {
+		for (int i = 0; i <= iArr; i++) {
+			if (array[i] == num) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 }
