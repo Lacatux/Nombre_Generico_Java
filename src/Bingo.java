@@ -66,7 +66,38 @@ public class Bingo extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 9, 0, 0));
-		
+
+		crearVentana();
+
+		inicializar();
+		registrarEventos();
+
+	}
+
+	private void inicializar() {
+
+
+
+	}
+
+	private void registrarEventos() {
+		exit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (JOptionPane.showConfirmDialog(Bingo.this,
+
+						"¿Seguro que quieres salir?",
+						"Salir",
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}				
+			}
+		});
+	}
+
+	private void crearVentana() {
+
 		arrayBotones = new JButton[FILAS][COLUMNAS];
 		crearBotones(arrayBotones);
 
@@ -103,94 +134,91 @@ public class Bingo extends JFrame {
 		exit.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(exit);
 
-		inicializar();
-		registrarEventos();
-
 	}
-	
+
 	private void crearBotones(JButton[][] arrayBotones) {
-		
+
 		for (int i = 0; i < FILAS; i++) {
 			for (int j = 0; j < COLUMNAS; j++) {
 				arrayBotones[i][j] = new JButton(introducir_numero(arrayBotones,j));
 				arrayBotones[i][j].setFont(new Font("Tahoma", Font.BOLD, 69));
 			}
 		}
-		
+
 		comprobarRepetidos(arrayBotones);
-		
+
 		int col=0;
 		while(col<9) {
 			ordenarArray(arrayBotones,col);
 			col++;
 		}
-		
+
 		huecosVacios(arrayBotones);
-		
+
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
 				contentPane.add(arrayBotones[i][j]);
 			}
 		}
-		
+
 	}
-	
+
 	public String introducir_numero(JButton[][] array, int j) {
 		int numero=0;
 
 		switch(j){
-			case 0:{
-				numero=(int)(Math.random()*9+1);
-				break;
-			}
-			case 1:{
-				numero=(int)(Math.random()*9+1);
-				numero=numero+10;
-				break;
-			}
-			case 2:{
-				numero=(int)(Math.random()*9+1);
-				numero=numero+20;
-				break;
-			}
-			case 3:{
-				numero=(int)(Math.random()*9+1);
-				numero=numero+30;
-				break;
-			}
-			case 4:{
-				numero=(int)(Math.random()*9+1);
-				numero=numero+40;
-				break;
-			}
-			case 5:{
-				numero=(int)(Math.random()*9+1);
-				numero=numero+50;
-				break;
-			}
-				case 6:{
-				numero=(int)(Math.random()*9+1);
-				numero=numero+60;
-				break;
-			}
-			case 7:{
-				numero=(int)(Math.random()*9+1);
-				numero=numero+70;
-				break;
-			}
-			case 8:{
-				numero=(int)(Math.random()*9+1);
-				numero=numero+80;
-				break;
-			}
+		case 0:{
+			numero=(int)(Math.random()*9+1);
+			break;
+		}
+		case 1:{
+			numero=(int)(Math.random()*9+1);
+			numero=numero+10;
+			break;
+		}
+		case 2:{
+			numero=(int)(Math.random()*9+1);
+			numero=numero+20;
+			break;
+		}
+		case 3:{
+			numero=(int)(Math.random()*9+1);
+			numero=numero+30;
+			break;
+		}
+		case 4:{
+			numero=(int)(Math.random()*9+1);
+			numero=numero+40;
+			break;
+		}
+		case 5:{
+			numero=(int)(Math.random()*9+1);
+			numero=numero+50;
+			break;
+		}
+		case 6:{
+			numero=(int)(Math.random()*9+1);
+			numero=numero+60;
+			break;
+		}
+		case 7:{
+			numero=(int)(Math.random()*9+1);
+			numero=numero+70;
+			break;
+		}
+		case 8:{
+			numero=(int)(Math.random()*9+1);
+			numero=numero+80;
+			break;
+		}
 		}			
 		return String.valueOf(numero);
 	}
-	
+
 	public void comprobarRepetidos(JButton[][] array) {
 		int numero, cont=0;
 		boolean repetido=false;
-		
+
 		for (int col = 0; col < 9; col++) {
 			do {
 				if(array[0][col].getText().equals(array[1][col].getText()) || array[0][col].getText().equals(array[2][col].getText())) {
@@ -210,22 +238,22 @@ public class Bingo extends JFrame {
 			cont=cont+10;
 		}			
 	}
-	
+
 	public void ordenarArray(JButton[][] array,int col) {
 		String[] enteros = new String[3];
-		
+
 		for (int i = 0; i < 3; i++) {
 			enteros[i]=array[i][col].getText();
 		}
-		
+
 		Arrays.sort(enteros);
-		
+
 		for (int i = 0; i < 3; i++) {
 			array[i][col].setText(enteros[i]);
 		}
-		
+
 	}
-	
+
 	public void huecosVacios(JButton[][] array) {
 		int numero, huecoLinea=0, comprobarFila=0;
 
@@ -247,7 +275,7 @@ public class Bingo extends JFrame {
 				}while(huecoLinea!=4);
 				break;
 			}
-			
+
 			do {
 				numero=(int)(Math.random()*9+1);
 				if(array[fila][numero-1].isEnabled()) {
@@ -258,105 +286,7 @@ public class Bingo extends JFrame {
 				}			
 			}while(huecoLinea!=4);
 		}
-	
-	}
-
-	private void inicializar() {
-
-		
-
-		//crearCarton();
 
 	}
-
-	private void registrarEventos() {
-		exit.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (JOptionPane.showConfirmDialog(Bingo.this,
-
-						"¿Seguro que quieres salir?",
-						"Salir",
-						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-					System.exit(0);
-				}				
-			}
-		});
-	}
-/*
-	private void crearCarton () {
-
-		int[] arrayNumeros = new int[15];
-		arrayCarton = new int[27];
-		int cont = 0, contQ = 0, columna = 0, numRnd = 0;
-
-		//CREACIÓN DE HUECOS EN BLANCO
-
-		for (int i = 0; i < arrayCarton.length; i++) {
-			
-			if (i % 3 == 0 && i != 0) {
-				columna ++;
-			}
-			switch (cont) {
-			case 0:
-				
-				break;
-			case 1:
-				
-				break;
-			case 2:
-				
-				break;
-			case 3:
-				
-				break;
-			case 4:
-				
-				break;
-			case 5:
-				
-				break;
-			case 6:
-				
-				break;
-			case 7:
-				
-				break;
-			case 8:
-				
-				break;
-			}
-			
-		}
-
-		//RELLENADO DEL CARTON
-		for (int i = 0; i < arrayNumeros.length; i++) {
-			do {
-				numRnd = random.nextInt(98) + 1;
-			} while(comprobarArray(arrayNumeros, numRnd, i));
-			arrayNumeros[i] = numRnd;
-		}
-		Arrays.sort(arrayNumeros);
-		for (int i = 0; i < arrayCarton.length; i++) {
-			if (arrayCarton[i] != 0) {
-				arrayCarton[i] = arrayNumeros[cont];
-				cont++;
-			}
-		}
-		
-		 
-
-	}
-*/
-	public boolean comprobarArray(int[] array, int num, int iArr) {
-		for (int i = 0; i <= iArr; i++) {
-			if (array[i] == num) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 
 }
