@@ -507,3 +507,162 @@ public class Bingo extends JFrame {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+codigo ane
+
+		//CODIGO EN DESUSO
+		/*
+		comprobarRepetidos(arrayBotones);
+
+		int col = 0;
+		while (col < 9) {
+			ordenarArray(arrayBotones, col);
+			col++;
+		}
+
+		huecosVacios(arrayBotones);
+
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 9; j++) {
+				contentPane.add(arrayBotones[i][j]);
+			}
+		}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+	public void comprobarRepetidos(JButton[][] array) {
+		int numero, cont=0;
+		boolean repetido=false;
+
+		for (int col = 0; col < 9; col++) {
+			do {
+				if(array[0][col].getText().equals(array[1][col].getText()) || array[0][col].getText().equals(array[2][col].getText())) {
+					numero=(int)(Math.random()*9+1);
+					numero=numero+cont;
+					array[0][col].setText(String.valueOf(numero));
+					repetido=true;
+				}else if(array[1][col].getText().equals(array[2][col].getText())) {
+					numero=(int)(Math.random()*9+1);
+					numero=numero+cont;
+					array[2][col].setText(String.valueOf(numero));
+					repetido=true;
+				}else {
+					repetido=false;
+				}
+			}while(repetido);
+			cont=cont+10;
+		}			
+	}
+
+	public void ordenarArray(JButton[][] array,int col) {
+		String[] enteros = new String[3];
+
+		for (int i = 0; i < 3; i++) {
+			enteros[i]=array[i][col].getText();
+		}
+
+		Arrays.sort(enteros);
+
+		for (int i = 0; i < 3; i++) {
+			array[i][col].setText(enteros[i]);
+		}
+
+	}
+
+	public void huecosVacios(JButton[][] array) {
+		int numero, huecoLinea=0, comprobarFila=0;
+
+		for (int i = 0; i < 3; i++) {
+			huecoLinea=0;
+
+
+			if(i==2) {
+				do {
+					numero=(int)(Math.random()*9+1);
+					if(!array[comprobarFila][numero-1].isEnabled() && !array[comprobarFila+1][numero-1].isEnabled()) {	
+					}else {
+						if(array[i][numero-1].isEnabled()) {
+							array[i][numero-1].setEnabled(false);
+							array[i][numero-1].setBackground(Color.WHITE);
+							array[i][numero-1].setText("");
+							huecoLinea++;
+						}
+					}
+
+				}while(huecoLinea!=4);
+				break;
+			}
+			do {
+				numero=(int)(Math.random()*9+1);
+				if(array[i][numero-1].isEnabled()) {
+					array[i][numero-1].setEnabled(false);
+					array[i][numero-1].setBackground(Color.WHITE);
+					array[i][numero-1].setText("");
+					huecoLinea++;
+				}			
+			}while(huecoLinea!=4);
+
+
+		}
+
+	}*/
