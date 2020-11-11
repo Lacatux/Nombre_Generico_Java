@@ -278,11 +278,12 @@ public class Bingo extends JFrame {
 			}
 
 			Arrays.sort(col);
+			
 			contDos = 0;
 			for (int i = 0; i < FILAS; i++) {
 				if (array[i][j].isEnabled()) {
 					num = Integer.toString(col[contDos]);
-					array[i][j].setText(num);;
+					array[i][j].setText(num);
 					contDos++;
 				}
 			}
