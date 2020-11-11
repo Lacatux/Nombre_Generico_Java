@@ -94,12 +94,35 @@ public class Bingo extends JFrame {
 				}				
 			}
 		});
+
+		btnNueva.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				nuevaPartida();				
+			}
+		});
 	}
+
+	//NUEVA PARTIDA//
+	private void nuevaPartida()	{
+		crearCarton(arrayBotones);
+	}
+
+	private void reiniciarCarton() {
+		for (int i = 0; i < FILAS; i++) {
+			for (int j = 0; j < COLUMNAS; j++) {
+				arrayBotones[i][j].setEnabled(false);
+				arrayBotones[i][j].setText("");
+			}
+		}
+	}
+	//NUEVA PARTIDA
 
 	private void crearVentana() {
 
 		arrayBotones = new JButton[FILAS][COLUMNAS];
-		crearBotones(arrayBotones);
+		crearBotones();
 
 		btnNueva = new JButton("Nueva Partida");
 		btnNueva.setHorizontalAlignment(SwingConstants.CENTER);
@@ -136,15 +159,23 @@ public class Bingo extends JFrame {
 
 	}
 
-	private void crearBotones(JButton[][] arrayBotones) {
+	private void crearBotones() {
 
-		int numRnd, contFila = 0, repetidos = 0;
 		for (int i = 0; i < FILAS; i++) {
 			for (int j = 0; j < COLUMNAS; j++) {
 				arrayBotones[i][j] = new JButton("");
 				arrayBotones[i][j].setFont(new Font("Tahoma", Font.BOLD, 69));
+				arrayBotones[i][j].setEnabled(false);
+				contentPane.add(arrayBotones[i][j]);
 			}
 		}
+
+	}
+
+	//CREAR CARTON
+	private void crearCarton(JButton[][] arrayBotones) {
+		reiniciarCarton();
+		int numRnd, contFila = 0, repetidos = 0;
 		do {
 			for (int i = 0; i < 2; i++) {			
 				do {
@@ -153,12 +184,10 @@ public class Bingo extends JFrame {
 					for (int j = 0; j < COLUMNAS; j++) {
 						numRnd = random.nextInt(8) + 1;
 						if(numRnd < 5 && contFila < 4) {
-							arrayBotones[i][j].setEnabled(false);
-							contentPane.add(arrayBotones[i][j]); 
+							arrayBotones[i][j].setEnabled(false);							
 							contFila++;
 						}else {
 							arrayBotones[i][j].setEnabled(true);
-							contentPane.add(arrayBotones[i][j]);
 						}					
 					}
 
@@ -176,24 +205,19 @@ public class Bingo extends JFrame {
 			for (int i = 0; i < COLUMNAS; i++) {
 				numRnd = random.nextInt(8) + 1;
 				if ((arrayBotones[0][i].isEnabled() && arrayBotones[1][i].isEnabled()) && contFila < 4) {
-					arrayBotones[2][i].setEnabled(false);
-					contentPane.add(arrayBotones[2][i]); 
+					arrayBotones[2][i].setEnabled(false); 
 					contFila++;
 				} else if ((arrayBotones[0][i].isEnabled() && !arrayBotones[1][i].isEnabled()) || (!arrayBotones[0][i].isEnabled() && arrayBotones[1][i].isEnabled())) {
 					if(numRnd < 5) {
 						arrayBotones[2][i].setEnabled(false);
-						contentPane.add(arrayBotones[2][i]); 
 						contFila++;
 					}else {
 						arrayBotones[2][i].setEnabled(true);
-						contentPane.add(arrayBotones[2][i]);
 					}	
 				} else if (!arrayBotones[0][i].isEnabled() && !arrayBotones[1][i].isEnabled()) {
 					arrayBotones[2][i].setEnabled(true);
-					contentPane.add(arrayBotones[2][i]);
 				} else {
 					arrayBotones[2][i].setEnabled(true);
-					contentPane.add(arrayBotones[2][i]);
 				}
 
 				if (arrayBotones[0][i].isEnabled() && arrayBotones[1][i].isEnabled() && arrayBotones[2][i].isEnabled()) {
@@ -214,7 +238,7 @@ public class Bingo extends JFrame {
 
 	}
 
-	public String introducir_numero(JButton[][] array,int i, int j) {
+	private String introducir_numero(JButton[][] array,int i, int j) {
 		int numero = 0;	
 		do {
 			numero = random.nextInt(9) + 1;
@@ -223,7 +247,7 @@ public class Bingo extends JFrame {
 		return String.valueOf(numero);
 	}
 
-	public boolean comprobarArray(JButton[][] array, int num, int i, int j) {
+	private boolean comprobarArray(JButton[][] array, int num, int i, int j) {
 
 		if (i == 0) {
 			return false;
@@ -255,7 +279,7 @@ public class Bingo extends JFrame {
 		return false;
 	}
 
-	public void ordenarArray(JButton[][] array) {
+	private void ordenarArray(JButton[][] array) {
 
 		int[] col;
 		int cont, contDos;
@@ -278,7 +302,7 @@ public class Bingo extends JFrame {
 			}
 
 			Arrays.sort(col);
-			
+
 			contDos = 0;
 			for (int i = 0; i < FILAS; i++) {
 				if (array[i][j].isEnabled()) {
@@ -287,12 +311,12 @@ public class Bingo extends JFrame {
 					contDos++;
 				}
 			}
-
 		}
 
-
-
 	}
+	//CREAR CARTON
+
+
 
 
 }
