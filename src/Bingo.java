@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,7 +23,7 @@ public class Bingo extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btnNueva;
-	private JButton exit;
+	private JButton btnMenu;
 	private JLabel lbl3;
 	private JLabel lbl4;
 	private JLabel lbl5;
@@ -34,6 +35,11 @@ public class Bingo extends JFrame {
 	public static final int COLUMNAS = 9;
 	public static final int FILAS = 3;
 	Random random = new Random();
+	private ImageIcon blushed = new ImageIcon("images\\blushed.png");
+	private ImageIcon happy = new ImageIcon("images\\happy.png");
+	private ImageIcon neutral = new ImageIcon("images\\neutral.png");
+	private ImageIcon sleepy = new ImageIcon("images\\sleepy.png");
+	private int[] numeros;
 
 
 	/**
@@ -67,30 +73,26 @@ public class Bingo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 9, 0, 0));
 
-		crearVentana();
+		contenidoVentana();
 
-		inicializar();
 		registrarEventos();
 
 	}
 
-	private void inicializar() {
-
-
-
-	}
 
 	private void registrarEventos() {
-		exit.addActionListener(new ActionListener() {
+		btnMenu.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(Bingo.this,
 
-						"¿Seguro que quieres salir?",
+						"¿Seguro que quieres volver al menú??",
 						"Salir",
 						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-					System.exit(0);
+					Menu menu = new Menu();
+					menu.setVisible(true);
+					dispose();
 				}				
 			}
 		});
@@ -102,11 +104,29 @@ public class Bingo extends JFrame {
 				nuevaPartida();				
 			}
 		});
+
+		for (int i = 0; i < FILAS; i++) {
+			for (int j = 0; j < COLUMNAS; j++) {
+				arrayBotones[i][j].addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+
+						JButton btn;
+						btn=(JButton)e.getSource();
+
+
+					}
+				});
+			}
+		}
 	}
 
 	//NUEVA PARTIDA//
 	private void nuevaPartida()	{
 		crearCarton(arrayBotones);
+		btnNueva.setEnabled(true);
+
 	}
 
 	private void reiniciarCarton() {
@@ -114,15 +134,21 @@ public class Bingo extends JFrame {
 			for (int j = 0; j < COLUMNAS; j++) {
 				arrayBotones[i][j].setEnabled(false);
 				arrayBotones[i][j].setText("");
+				arrayBotones[i][j].setIcon(null);
 			}
 		}
 	}
 	//NUEVA PARTIDA
 
-	private void crearVentana() {
+	private void contenidoVentana() {
 
 		arrayBotones = new JButton[FILAS][COLUMNAS];
-		crearBotones();
+		crearArrayBotones();
+		for (int i = 0; i < FILAS; i++) {
+			for (int j = 0; j < COLUMNAS; j++) {
+				contentPane.add(arrayBotones[i][j]);
+			}
+		}
 
 		btnNueva = new JButton("Nueva Partida");
 		btnNueva.setHorizontalAlignment(SwingConstants.CENTER);
@@ -153,22 +179,23 @@ public class Bingo extends JFrame {
 		lblTdig1 = new JLabel("");
 		contentPane.add(lblTdig1);
 
-		exit = new JButton("Salir");
-		exit.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(exit);
+		btnMenu = new JButton("Men\u00FA");
+		btnMenu.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(btnMenu);
 
 	}
 
-	private void crearBotones() {
+	private void crearArrayBotones() {
 
 		for (int i = 0; i < FILAS; i++) {
 			for (int j = 0; j < COLUMNAS; j++) {
 				arrayBotones[i][j] = new JButton("");
 				arrayBotones[i][j].setFont(new Font("Tahoma", Font.BOLD, 69));
 				arrayBotones[i][j].setEnabled(false);
-				contentPane.add(arrayBotones[i][j]);
 			}
 		}
+
+		baba();
 
 	}
 
@@ -235,6 +262,8 @@ public class Bingo extends JFrame {
 		}
 
 		ordenarArray(arrayBotones);
+
+		baba();
 
 	}
 
@@ -315,6 +344,36 @@ public class Bingo extends JFrame {
 
 	}
 	//CREAR CARTON
+
+	private void baba() {
+		int rnd = 0;
+		for (int i = 0; i < FILAS; i++) {
+			for (int j = 0; j < COLUMNAS; j++) {
+				if (!arrayBotones[i][j].isEnabled()) {
+					rnd = random.nextInt(4) + 1;
+					switch (rnd) {
+					case 1:
+						arrayBotones[i][j].setDisabledIcon(blushed);
+						arrayBotones[i][j].setIcon(blushed);
+						break;
+					case 2:
+						arrayBotones[i][j].setDisabledIcon(happy);
+						arrayBotones[i][j].setIcon(happy);
+						break;
+					case 3:
+						arrayBotones[i][j].setDisabledIcon(neutral);						
+						arrayBotones[i][j].setIcon(neutral);
+
+						break;
+					case 4:
+						arrayBotones[i][j].setDisabledIcon(sleepy);
+						arrayBotones[i][j].setIcon(sleepy);
+						break;
+					}
+				}
+			}
+		}
+	}
 
 
 
