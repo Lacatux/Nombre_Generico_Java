@@ -40,6 +40,7 @@ public class Bingo extends JFrame {
 	private ImageIcon neutral = new ImageIcon("images\\neutral.png");
 	private ImageIcon sleepy = new ImageIcon("images\\sleepy.png");
 	private int[] numeros;
+	private int pos;
 
 
 	/**
@@ -115,12 +116,32 @@ public class Bingo extends JFrame {
 
 						JButton btn;
 						btn = (JButton)e.getSource();
+						btn.setEnabled(false);
 
 
 					}
 				});
 			}
 		}
+
+		btnSiguiente.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				bolas(pos);
+				pos++;
+
+			}
+		});
+
+		btnComprobar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				comprobar(pos);
+			}
+		});
 	}
 
 	//NUEVA PARTIDA//
@@ -131,6 +152,11 @@ public class Bingo extends JFrame {
 		btnComprobar.setEnabled(true);
 		btnBingo.setEnabled(true);
 		btnLinea.setEnabled(true);
+		numeros = new int[88];
+		pos = 0;
+		bolas(pos);
+		pos++;
+
 
 	}
 
@@ -397,9 +423,46 @@ public class Bingo extends JFrame {
 		}
 	}
 
-	private void bolas() {
-		
+	private void bolas(int pos) {
+		boolean repetido = false;
+		String num;
+		if (pos < 88) {
+			do {
+				repetido = false;
+				if (pos == 0) {
+					numeros[pos] = random.nextInt(89) + 1;
+				} else {
+					numeros[pos] = random.nextInt(89) + 1;
+					for (int i = 0; i < pos; i++) {
+						if (numeros[pos] == numeros[i]) {
+							repetido = true;
+						}
+					}
+				}
+			} while (repetido);
+			lbl5.setText(Integer.toString(numeros[pos]));
+		} else {
+			btnSiguiente.setEnabled(false);
+			JOptionPane.showMessageDialog(this, "¡Ya has recorrido todos los números!");
+			btnNueva.setEnabled(true);
+		}
 	}
 
-
+	private void comprobar(int pos) {
+		int num = 0;
+		for (int i = 0; i < FILAS; i++) {
+			for (int j = 0; j < COLUMNAS; j++) {
+				for (int k = 0; k < pos; k++) {
+					if (!arrayBotones[i][j].isEnabled()) {
+						if (!arrayBotones[i][j].getText().equals(null)) {
+							num = Integer.parseInt(arrayBotones[i][j].getText());
+							arrayBotones[i][j].setEnabled(false);
+						} else {
+							arrayBotones[i][j].setEnabled(true);
+						}
+					}
+				}
+			}
+		}
+	}
 }
