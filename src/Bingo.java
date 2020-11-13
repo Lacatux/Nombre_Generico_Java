@@ -27,10 +27,10 @@ public class Bingo extends JFrame {
 	private JLabel lbl3;
 	private JLabel lbl4;
 	private JLabel lbl5;
-	private JLabel lbl6;
-	private JLabel lbl7;
-	private JLabel lblTdig2;
-	private JLabel lblTdig1;
+	private JButton btnBingo;
+	private JButton btnLinea;
+	private JButton btnSiguiente;
+	private JButton btnComprobar;
 	private JButton[][] arrayBotones;
 	public static final int COLUMNAS = 9;
 	public static final int FILAS = 3;
@@ -69,6 +69,7 @@ public class Bingo extends JFrame {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(50, 150, 1350, 650);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(224, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 9, 0, 0));
@@ -87,7 +88,7 @@ public class Bingo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(Bingo.this,
 
-						"¿Seguro que quieres volver al menú??",
+						"¿Seguro que quieres volver al menú?",
 						"Salir",
 						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 					Menu menu = new Menu();
@@ -113,7 +114,7 @@ public class Bingo extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 
 						JButton btn;
-						btn=(JButton)e.getSource();
+						btn = (JButton)e.getSource();
 
 
 					}
@@ -125,7 +126,11 @@ public class Bingo extends JFrame {
 	//NUEVA PARTIDA//
 	private void nuevaPartida()	{
 		crearCarton(arrayBotones);
-		btnNueva.setEnabled(true);
+		btnNueva.setEnabled(false);
+		btnSiguiente.setEnabled(true);
+		btnComprobar.setEnabled(true);
+		btnBingo.setEnabled(true);
+		btnLinea.setEnabled(true);
 
 	}
 
@@ -151,37 +156,54 @@ public class Bingo extends JFrame {
 		}
 
 		btnNueva = new JButton("Nueva Partida");
+		btnNueva.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnNueva.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(btnNueva);
+
+		btnMenu = new JButton("Men\u00FA");
+		btnMenu.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnMenu.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(btnMenu);
 
 		lbl3 = new JLabel("");
 		lbl3.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lbl3);
 
 		lbl4 = new JLabel("Nuevo N\u00FAmero");
+		lbl4.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lbl4.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl4.setBackground(new Color(152, 251, 152));
+		lbl4.setOpaque(true);
 		contentPane.add(lbl4);
 
 		lbl5 = new JLabel("");
+		lbl5.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lbl5);
+		lbl5.setBackground(new Color(152, 251, 152));
+		lbl5.setFont(new Font("Tahoma", Font.BOLD, 69));
+		lbl5.setOpaque(true);
 
-		lbl6 = new JLabel("Numero Anterior");
-		lbl6.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(lbl6);
+		btnSiguiente = new JButton("Siguiente N\u00FAmero");
+		btnSiguiente.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnSiguiente.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(btnSiguiente);
+		btnSiguiente.setEnabled(false);
 
-		lbl7 = new JLabel("");
-		contentPane.add(lbl7);
+		btnComprobar = new JButton("Comprobar");
+		btnComprobar.setFont(new Font("Tahoma", Font.BOLD, 15));
+		contentPane.add(btnComprobar);
+		btnComprobar.setEnabled(false);
 
-		lblTdig2 = new JLabel("");
-		lblTdig2.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(lblTdig2);
+		btnBingo = new JButton("BINGO");
+		btnBingo.setFont(new Font("Tahoma", Font.BOLD, 25));
+		btnBingo.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(btnBingo);
+		btnBingo.setEnabled(false);
 
-		lblTdig1 = new JLabel("");
-		contentPane.add(lblTdig1);
-
-		btnMenu = new JButton("Men\u00FA");
-		btnMenu.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(btnMenu);
+		btnLinea = new JButton("L\u00CDNEA");
+		btnLinea.setFont(new Font("Tahoma", Font.BOLD, 25));
+		contentPane.add(btnLinea);
+		btnLinea.setEnabled(false);
 
 	}
 
@@ -375,7 +397,9 @@ public class Bingo extends JFrame {
 		}
 	}
 
-
+	private void bolas() {
+		
+	}
 
 
 }
