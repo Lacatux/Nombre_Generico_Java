@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.multi.MultiMenuItemUI;
+
 import java.awt.Toolkit;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -115,7 +117,9 @@ public class Menu extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-//				if(JOptionPane.)
+				Multijugador multi = new Multijugador();
+				multi.setVisible(true);
+				dispose();
 				
 			}
 		});
