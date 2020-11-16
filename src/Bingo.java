@@ -39,6 +39,7 @@ public class Bingo extends JFrame {
 	private ImageIcon happy = new ImageIcon("images\\happy.png");
 	private ImageIcon neutral = new ImageIcon("images\\neutral.png");
 	private ImageIcon sleepy = new ImageIcon("images\\sleepy.png");
+	private ImageIcon win = new ImageIcon("images\\win.png");
 	private int[] numeros;
 	private int pos;
 
@@ -142,6 +143,28 @@ public class Bingo extends JFrame {
 				comprobar(pos);
 			}
 		});
+
+		btnLinea.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				comprobar(pos);
+				linea();
+
+			}
+		});
+		
+		btnBingo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				comprobar(pos);
+				botonBingo();
+				
+			}
+		});
 	}
 
 	//NUEVA PARTIDA//
@@ -152,7 +175,10 @@ public class Bingo extends JFrame {
 		btnComprobar.setEnabled(true);
 		btnBingo.setEnabled(true);
 		btnLinea.setEnabled(true);
-		numeros = new int[88];
+		lbl4.setText("Nuevo N\u00FAmero");
+		lbl4.setOpaque(true);
+		lbl5.setOpaque(true);
+		numeros = new int[90];
 		pos = 0;
 		bolas(pos);
 		pos++;
@@ -195,11 +221,11 @@ public class Bingo extends JFrame {
 		lbl3.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lbl3);
 
-		lbl4 = new JLabel("Nuevo N\u00FAmero");
+		lbl4 = new JLabel("");
 		lbl4.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lbl4.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl4.setBackground(new Color(152, 251, 152));
-		lbl4.setOpaque(true);
+		lbl4.setOpaque(false);
 		contentPane.add(lbl4);
 
 		lbl5 = new JLabel("");
@@ -207,7 +233,7 @@ public class Bingo extends JFrame {
 		contentPane.add(lbl5);
 		lbl5.setBackground(new Color(152, 251, 152));
 		lbl5.setFont(new Font("Tahoma", Font.BOLD, 69));
-		lbl5.setOpaque(true);
+		lbl5.setOpaque(false);
 
 		btnSiguiente = new JButton("Siguiente N\u00FAmero");
 		btnSiguiente.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -305,6 +331,7 @@ public class Bingo extends JFrame {
 			for (int j = 0; j < COLUMNAS; j++) {
 				if (arrayBotones[i][j].isEnabled()) {
 					arrayBotones[i][j].setText(introducir_numero(arrayBotones, i, j));
+					arrayBotones[i][j].setBackground(Color.WHITE);
 				}
 			}
 		}
@@ -318,8 +345,12 @@ public class Bingo extends JFrame {
 	private String introducir_numero(JButton[][] array,int i, int j) {
 		int numero = 0;	
 		do {
-			numero = random.nextInt(9) + 1;
-			numero = numero + (10 * j);	
+			if (j == 0) {
+				numero = random.nextInt(9) + 1;
+			} else {
+				numero = random.nextInt(9);
+				numero = numero + (10 * j);	
+			}
 		} while (comprobarArray(array, numero, i, j));
 		return String.valueOf(numero);
 	}
@@ -403,19 +434,22 @@ public class Bingo extends JFrame {
 					case 1:
 						arrayBotones[i][j].setDisabledIcon(blushed);
 						arrayBotones[i][j].setIcon(blushed);
+						arrayBotones[i][j].setBackground(new Color(230,230,230));
 						break;
 					case 2:
 						arrayBotones[i][j].setDisabledIcon(happy);
 						arrayBotones[i][j].setIcon(happy);
+						arrayBotones[i][j].setBackground(new Color(230,230,230));
 						break;
 					case 3:
 						arrayBotones[i][j].setDisabledIcon(neutral);						
 						arrayBotones[i][j].setIcon(neutral);
-
+						arrayBotones[i][j].setBackground(new Color(230,230,230));
 						break;
 					case 4:
 						arrayBotones[i][j].setDisabledIcon(sleepy);
 						arrayBotones[i][j].setIcon(sleepy);
+						arrayBotones[i][j].setBackground(new Color(230,230,230));
 						break;
 					}
 				}
@@ -425,8 +459,7 @@ public class Bingo extends JFrame {
 
 	private void bolas(int pos) {
 		boolean repetido = false;
-		String num;
-		if (pos < 88) {
+		if (pos < 89) {
 			do {
 				repetido = false;
 				if (pos == 0) {
@@ -449,20 +482,87 @@ public class Bingo extends JFrame {
 	}
 
 	private void comprobar(int pos) {
-		int num = 0;
+		int num;
+		boolean sale;
 		for (int i = 0; i < FILAS; i++) {
 			for (int j = 0; j < COLUMNAS; j++) {
-				for (int k = 0; k < pos; k++) {
-					if (!arrayBotones[i][j].isEnabled()) {
-						if (!arrayBotones[i][j].getText().equals(null)) {
-							num = Integer.parseInt(arrayBotones[i][j].getText());
-							arrayBotones[i][j].setEnabled(false);
-						} else {
-							arrayBotones[i][j].setEnabled(true);
-						}
+
+				if (!arrayBotones[i][j].isEnabled() && !arrayBotones[i][j].getText().equals("") && arrayBotones[i][j].getIcon() == null) {
+					num = 0;
+					sale = false;
+					num = Integer.parseInt(arrayBotones[i][j].getText());
+					for (int k = 0; k < pos; k++) {
+						if (numeros[k] == num) {
+							sale = true;
+						} 
+					}
+					if (sale) {
+						arrayBotones[i][j].setEnabled(false);
+					} else {
+						arrayBotones[i][j].setEnabled(true);
+					}
+				}				
+			}
+		}
+	}
+
+	private void linea() {
+		int cont;
+		for (int i = 0; i < FILAS; i++) {
+			cont = 0;
+			for (int j = 0; j < COLUMNAS; j++) {
+				if (!arrayBotones[i][j].isEnabled()) {
+					cont++;
+				}
+			}
+			if(cont == 9) {
+				switch (i) {
+				case 0, 2:
+					for (int j = 0; j < COLUMNAS; j++) {
+						arrayBotones[i][j].setBackground(new Color(255,248,220));
+					}
+				break;
+				case 1:
+					for (int j = 0; j < COLUMNAS; j++) {
+						arrayBotones[i][j].setBackground(new Color(224,255,255));
 					}
 				}
 			}
 		}
 	}
+
+	private void botonBingo() {
+		int cont = 0;
+		for (int i = 0; i < FILAS; i++) {
+			for (int j = 0; j < COLUMNAS; j++) {
+				if (!arrayBotones[i][j].isEnabled()) {
+					cont++;
+				}
+			}
+		}
+		if (cont == 27) {
+			victoria();
+		}
+	}
+	
+	private void victoria() {
+		for (int i = 0; i < FILAS; i++) {
+			for (int j = 0; j < COLUMNAS; j++) {
+				btnNueva.setEnabled(true);
+				arrayBotones[i][j].setText("");
+				arrayBotones[i][j].setBackground(Color.WHITE);
+				arrayBotones[i][j].setDisabledIcon(win);
+				arrayBotones[i][j].setIcon(win);
+				btnSiguiente.setEnabled(false);
+				btnComprobar.setEnabled(false);
+				btnBingo.setEnabled(false);
+				btnLinea.setEnabled(false);
+				lbl4.setText("");
+				lbl4.setOpaque(false);
+				lbl5.setText("");
+				lbl5.setOpaque(false);
+			}
+		}
+	}
+	
 }
