@@ -128,7 +128,9 @@ public class Menu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				Tablero tablero = new Tablero();
+				tablero.setVisible(true);
+				dispose();
 			}
 		});
 

@@ -169,8 +169,9 @@ public class Bingo extends JFrame {
 
 	//NUEVA PARTIDA//
 	private void nuevaPartida()	{
+		reiniciarCarton();
 		crearCarton(arrayBotones);
-		btnNueva.setEnabled(false);
+		btnNueva.setEnabled(true);
 		btnSiguiente.setEnabled(true);
 		btnComprobar.setEnabled(true);
 		btnBingo.setEnabled(true);
@@ -275,7 +276,6 @@ public class Bingo extends JFrame {
 
 	//CREAR CARTON
 	private void crearCarton(JButton[][] arrayBotones) {
-		reiniciarCarton();
 		int numRnd, contFila = 0, repetidos = 0;
 		do {
 			for (int i = 0; i < 2; i++) {			
