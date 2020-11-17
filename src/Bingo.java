@@ -170,7 +170,7 @@ public class Bingo extends JFrame {
 	//NUEVA PARTIDA//
 	private void nuevaPartida()	{
 		reiniciarCarton();
-		crearCarton(arrayBotones);
+		crearCarton(arrayBotones);	
 		btnNueva.setEnabled(true);
 		btnSiguiente.setEnabled(true);
 		btnComprobar.setEnabled(true);
@@ -183,8 +183,7 @@ public class Bingo extends JFrame {
 		pos = 0;
 		bolas(pos);
 		pos++;
-
-
+		
 	}
 
 	private void reiniciarCarton() {
@@ -207,7 +206,7 @@ public class Bingo extends JFrame {
 				contentPane.add(arrayBotones[i][j]);
 			}
 		}
-
+		
 		btnNueva = new JButton("Nueva Partida");
 		btnNueva.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnNueva.setHorizontalAlignment(SwingConstants.CENTER);

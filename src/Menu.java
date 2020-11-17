@@ -21,7 +21,6 @@ public class Menu extends JFrame {
 	private JPanel contentPane;
 	private JButton btnSingle;
 	private JButton btnMulti;
-	private JButton btnOtro;
 	private JButton btnSalir;
 	private JButton btnMultUno;
 	private JButton btnMultDos;
@@ -53,12 +52,12 @@ public class Menu extends JFrame {
 		setResizable(false);
 		setTitle("Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(500, 200, 403, 487);
+		setBounds(500, 250, 403, 369);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(176, 224, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(4, 1, 50, 50));
+		contentPane.setLayout(new GridLayout(3, 1, 50, 25));
 
 		btnSingle = new JButton("Un solo jugador");
 		btnSingle.setBackground(new Color(152, 251, 152));
@@ -71,10 +70,7 @@ public class Menu extends JFrame {
 		btnMulti.setFont(new Font("Tahoma", Font.BOLD, 30));
 		contentPane.add(btnMulti);
 
-		btnOtro = new JButton("Otro");
-		btnOtro.setBackground(new Color(255, 160, 122));
-		btnOtro.setFont(new Font("Tahoma", Font.BOLD, 30));
-		contentPane.add(btnOtro);
+		
 
 		btnSalir = new JButton("Salir");
 		btnSalir.setBackground(new Color(221, 160, 221));
@@ -124,15 +120,6 @@ public class Menu extends JFrame {
 			}
 		});
 
-		btnOtro.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Tablero tablero = new Tablero();
-				tablero.setVisible(true);
-				dispose();
-			}
-		});
 
 		btnSalir.addActionListener(new ActionListener() {
 

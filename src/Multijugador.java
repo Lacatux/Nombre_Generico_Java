@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Random;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -28,12 +29,13 @@ public class Multijugador extends JFrame {
 	private JButton btnMenu;
 	private JLabel lbl2;
 	private JLabel lbl3;
-	private JLabel lbl4;
+	private JLabel btnComprobar;
 	private JLabel lbl5;
 	private JLabel lbl6;
 	private JButton btnBingo;
 	private JButton btnLinea;
 	private JButton[][] arrayBotones;
+	private JButton[][] aux;
 	public static final int COLUMNAS = 9;
 	public static final int FILAS = 3;
 	Random random = new Random();
@@ -116,14 +118,14 @@ public class Multijugador extends JFrame {
 						JButton btn;
 						btn = (JButton)e.getSource();
 						btn.setEnabled(false);
-						
+
 
 
 					}
 				});
 			}
 		}
-		
+
 		btnLinea.addActionListener(new ActionListener() {
 
 			@Override
@@ -192,25 +194,17 @@ public class Multijugador extends JFrame {
 		lbl2 = new JLabel("");
 		contentPane1.add(lbl2);
 
-		lbl4 = new JLabel("");
-		lbl4.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lbl4.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl4.setBackground(new Color(152, 251, 152));
-		lbl4.setOpaque(false);
-		contentPane1.add(lbl4);
+		btnComprobar = new JLabel("");
+		contentPane1.add(btnComprobar);
 
 		lbl5 = new JLabel("");
-		lbl5.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane1.add(lbl5);
-		lbl5.setBackground(new Color(152, 251, 152));
-		lbl5.setFont(new Font("Tahoma", Font.BOLD, 69));
-		lbl5.setOpaque(false);
 
 		lbl6 = new JLabel("");
 		contentPane1.add(lbl6);
 
 		btnBingo = new JButton("BINGO");
-		
+
 		btnBingo.setFont(new Font("Tahoma", Font.BOLD, 25));
 		btnBingo.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane1.add(btnBingo);
@@ -233,7 +227,7 @@ public class Multijugador extends JFrame {
 			}
 		}
 
-		baba();
+		baba(false);
 
 	}
 
@@ -302,7 +296,7 @@ public class Multijugador extends JFrame {
 
 		ordenarArray(arrayBotones);
 
-		baba();
+		baba(false);
 
 	}
 
@@ -388,33 +382,41 @@ public class Multijugador extends JFrame {
 	}
 	//CREAR CARTON
 
-	private void baba() {
+	private void baba(boolean babaWin) {
 		int rnd = 0;
 		for (int i = 0; i < FILAS; i++) {
 			for (int j = 0; j < COLUMNAS; j++) {
-				if (!arrayBotones[i][j].isEnabled()) {
-					rnd = random.nextInt(4) + 1;
-					switch (rnd) {
-					case 1:
-						arrayBotones[i][j].setDisabledIcon(blushed);
-						arrayBotones[i][j].setIcon(blushed);
-						arrayBotones[i][j].setBackground(new Color(230,230,230));
-						break;
-					case 2:
-						arrayBotones[i][j].setDisabledIcon(happy);
-						arrayBotones[i][j].setIcon(happy);
-						arrayBotones[i][j].setBackground(new Color(230,230,230));
-						break;
-					case 3:
-						arrayBotones[i][j].setDisabledIcon(neutral);						
-						arrayBotones[i][j].setIcon(neutral);
-						arrayBotones[i][j].setBackground(new Color(230,230,230));
-						break;
-					case 4:
-						arrayBotones[i][j].setDisabledIcon(sleepy);
-						arrayBotones[i][j].setIcon(sleepy);
-						arrayBotones[i][j].setBackground(new Color(230,230,230));
-						break;
+				if (!babaWin) {
+					if (!arrayBotones[i][j].isEnabled()) {
+						rnd = random.nextInt(4) + 1;
+						switch (rnd) {
+						case 1:
+							arrayBotones[i][j].setDisabledIcon(blushed);
+							arrayBotones[i][j].setIcon(blushed);
+							arrayBotones[i][j].setBackground(new Color(230,230,230));
+							break;
+						case 2:
+							arrayBotones[i][j].setDisabledIcon(happy);
+							arrayBotones[i][j].setIcon(happy);
+							arrayBotones[i][j].setBackground(new Color(230,230,230));
+							break;
+						case 3:
+							arrayBotones[i][j].setDisabledIcon(neutral);						
+							arrayBotones[i][j].setIcon(neutral);
+							arrayBotones[i][j].setBackground(new Color(230,230,230));
+							break;
+						case 4:
+							arrayBotones[i][j].setDisabledIcon(sleepy);
+							arrayBotones[i][j].setIcon(sleepy);
+							arrayBotones[i][j].setBackground(new Color(230,230,230));
+							break;
+						}
+					}
+				} else if (babaWin){
+					if (arrayBotones[i][j].getText().equals("")) {
+						arrayBotones[i][j].setDisabledIcon(win);						
+						arrayBotones[i][j].setIcon(win);
+						arrayBotones[i][j].setBackground(Color.WHITE);
 					}
 				}
 			}
@@ -461,20 +463,17 @@ public class Multijugador extends JFrame {
 	}
 
 	private void victoria() {
+		aux = new JButton[FILAS][COLUMNAS];
 		for (int i = 0; i < FILAS; i++) {
 			for (int j = 0; j < COLUMNAS; j++) {
 				btnNueva.setEnabled(true);
-				arrayBotones[i][j].setText("");
-				arrayBotones[i][j].setBackground(Color.WHITE);
-				arrayBotones[i][j].setDisabledIcon(win);
-				arrayBotones[i][j].setIcon(win);
 				btnBingo.setEnabled(false);
 				btnLinea.setEnabled(false);
-				lbl4.setText("");
-				lbl4.setOpaque(false);
-				lbl5.setText("");
-				lbl5.setOpaque(false);
 			}
 		}
+		baba(true);
 	}
+
+
+
 }
