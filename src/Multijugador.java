@@ -39,11 +39,11 @@ public class Multijugador extends JFrame {
 	public static final int COLUMNAS = 9;
 	public static final int FILAS = 3;
 	Random random = new Random();
-	private ImageIcon blushed = new ImageIcon("images\\blushed.png");
-	private ImageIcon happy = new ImageIcon("images\\happy.png");
-	private ImageIcon neutral = new ImageIcon("images\\neutral.png");
-	private ImageIcon sleepy = new ImageIcon("images\\sleepy.png");
-	private ImageIcon win = new ImageIcon("images\\win.png");
+	private ImageIcon blushed = new ImageIcon("images\\baba\\blushed.png");
+	private ImageIcon happy = new ImageIcon("images\\baba\\happy.png");
+	private ImageIcon neutral = new ImageIcon("images\\baba\\neutral.png");
+	private ImageIcon sleepy = new ImageIcon("images\\baba\\sleepy.png");
+	private ImageIcon win = new ImageIcon("images\\baba\\win.png");
 
 	/**
 	 * Launch the application.
@@ -65,7 +65,7 @@ public class Multijugador extends JFrame {
 	 * Create the frame.
 	 */
 	public Multijugador() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\babaicon.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\baba\\babaicon.png"));
 		setTitle("Bingo");
 		setResizable(false);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

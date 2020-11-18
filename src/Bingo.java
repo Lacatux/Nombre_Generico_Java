@@ -35,11 +35,22 @@ public class Bingo extends JFrame {
 	public static final int COLUMNAS = 9;
 	public static final int FILAS = 3;
 	Random random = new Random();
-	private ImageIcon blushed = new ImageIcon("images\\blushed.png");
-	private ImageIcon happy = new ImageIcon("images\\happy.png");
-	private ImageIcon neutral = new ImageIcon("images\\neutral.png");
-	private ImageIcon sleepy = new ImageIcon("images\\sleepy.png");
-	private ImageIcon win = new ImageIcon("images\\win.png");
+	private ImageIcon blushed = new ImageIcon("images\\baba\\blushed.png");
+	private ImageIcon happy = new ImageIcon("images\\baba\\happy.png");
+	private ImageIcon neutral = new ImageIcon("images\\baba\\neutral.png");
+	private ImageIcon sleepy = new ImageIcon("images\\baba\\sleepy.png");
+	private ImageIcon win = new ImageIcon("images\\baba\\win.png");
+	private ImageIcon cool = new ImageIcon("images\\abus\\coolgrandma.jpg");
+	private ImageIcon coolDedo = new ImageIcon("images\\abus\\coolgrandma.jpg");
+	private ImageIcon corazon = new ImageIcon("images\\abus\\cora.jpg");
+	private ImageIcon dolarW = new ImageIcon("images\\abus\\grandpadolar.jpg");
+	private ImageIcon grito = new ImageIcon("images\\abus\\grito.jpg");
+	private ImageIcon grumpy = new ImageIcon("images\\abus\\grumpy.jpg");
+	private ImageIcon crazy = new ImageIcon("images\\abus\\locaabu.jpg");
+	private ImageIcon dolarM = new ImageIcon("images\\abus\\moni.jpg");
+	private ImageIcon pan = new ImageIcon("images\\abus\\pangrandma.jpeg");
+	private ImageIcon smoke = new ImageIcon("images\\abus\\smoke.jpg");
+	private ImageIcon tlf = new ImageIcon("images\\abus\\tlf.jpg");
 	private int[] numeros;
 	private int pos;
 
@@ -65,7 +76,7 @@ public class Bingo extends JFrame {
 	 * Create the frame.
 	 */
 	public Bingo() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\babaicon.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\baba\\babaicon.png"));
 		setTitle("Bingo");
 		setResizable(false);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -154,15 +165,15 @@ public class Bingo extends JFrame {
 
 			}
 		});
-		
+
 		btnBingo.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				comprobar(pos);
 				botonBingo();
-				
+
 			}
 		});
 	}
@@ -183,7 +194,7 @@ public class Bingo extends JFrame {
 		pos = 0;
 		bolas(pos);
 		pos++;
-		
+
 	}
 
 	private void reiniciarCarton() {
@@ -206,7 +217,7 @@ public class Bingo extends JFrame {
 				contentPane.add(arrayBotones[i][j]);
 			}
 		}
-		
+
 		btnNueva = new JButton("Nueva Partida");
 		btnNueva.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnNueva.setHorizontalAlignment(SwingConstants.CENTER);
@@ -543,7 +554,7 @@ public class Bingo extends JFrame {
 			victoria();
 		}
 	}
-	
+
 	private void victoria() {
 		for (int i = 0; i < FILAS; i++) {
 			for (int j = 0; j < COLUMNAS; j++) {
@@ -562,6 +573,18 @@ public class Bingo extends JFrame {
 				lbl5.setOpaque(false);
 			}
 		}
+		if (random.nextInt(1) == 1) {
+			JOptionPane.showMessageDialog(null, "¡Has ganado!", "Partida", JOptionPane.INFORMATION_MESSAGE, dolarW);
+		} else {
+			JOptionPane.showMessageDialog(null, "¡Has ganado!", "Partida", JOptionPane.INFORMATION_MESSAGE, dolarM);
+		}
+
 	}
-	
+
+	private void maquina(int pos) {
+
+		JOptionPane.showMessageDialog(null, "Hello world", "Partida", JOptionPane.INFORMATION_MESSAGE, win);
+
+	}
+
 }

@@ -48,7 +48,7 @@ public class Menu extends JFrame {
 	 * Create the frame.
 	 */
 	public Menu() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\babaicon.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\baba\\babaicon.png"));
 		setResizable(false);
 		setTitle("Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
