@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -41,10 +43,10 @@ public class Bingo extends JFrame {
 	private ImageIcon sleepy = new ImageIcon("images\\baba\\sleepy.png");
 	private ImageIcon win = new ImageIcon("images\\baba\\win.png");
 	private ImageIcon cool = new ImageIcon("images\\abus\\coolgrandma.jpg");
-	private ImageIcon coolDedo = new ImageIcon("images\\abus\\coolgrandma.jpg");
 	private ImageIcon corazon = new ImageIcon("images\\abus\\cora.jpg");
 	private ImageIcon dolarW = new ImageIcon("images\\abus\\grandpadolar.jpg");
 	private ImageIcon grito = new ImageIcon("images\\abus\\grito.jpg");
+	private ImageIcon gritoI = new ImageIcon("images\\abus\\gritoI.jpg");
 	private ImageIcon grumpy = new ImageIcon("images\\abus\\grumpy.jpg");
 	private ImageIcon crazy = new ImageIcon("images\\abus\\locaabu.jpg");
 	private ImageIcon dolarM = new ImageIcon("images\\abus\\moni.jpg");
@@ -53,6 +55,7 @@ public class Bingo extends JFrame {
 	private ImageIcon tlf = new ImageIcon("images\\abus\\tlf.jpg");
 	private int[] numeros;
 	private int pos;
+	private javax.swing.Timer timer;
 
 
 	/**
@@ -95,6 +98,18 @@ public class Bingo extends JFrame {
 
 
 	private void registrarEventos() {
+
+		timer = new javax.swing.Timer(500, new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				btnSiguiente.setEnabled(true);
+				timer.stop();
+
+			}
+		});
+
 		btnMenu.addActionListener(new ActionListener() {
 
 			@Override
@@ -140,9 +155,13 @@ public class Bingo extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
+				btnSiguiente.setEnabled(false);
 				bolas(pos);
+				maquina(pos);
 				pos++;
+
+				timer.start();
 
 			}
 		});
@@ -552,6 +571,8 @@ public class Bingo extends JFrame {
 		}
 		if (cont == 27) {
 			victoria();
+		} else {
+			JOptionPane.showMessageDialog(null, "Maria Luisa te amenaza con la sartén por cantar un bingo.", "Partida", JOptionPane.INFORMATION_MESSAGE, pan);
 		}
 	}
 
@@ -583,7 +604,25 @@ public class Bingo extends JFrame {
 
 	private void maquina(int pos) {
 
-		JOptionPane.showMessageDialog(null, "Hello world", "Partida", JOptionPane.INFORMATION_MESSAGE, win);
+		int num = random.nextInt(10000) + 1;
+
+		if (pos > 80 && num > 9950) {			
+			JOptionPane.showMessageDialog(null, "¡A Anselmo le ha dado un ataque al corazón! Se suspende la partida.", "Partida", JOptionPane.INFORMATION_MESSAGE, corazon);
+			nuevaPartida();
+		} else if (pos > 35 && num > 9450 && num < 9950) {
+			JOptionPane.showMessageDialog(null, "¡Carmen Marlena canta bingo! Se termina la partida.", "Partida", JOptionPane.INFORMATION_MESSAGE, grito);
+			nuevaPartida();
+		} else if (num > 0 && num < 1000) {
+			JOptionPane.showMessageDialog(null, "Blanca se enciende un cigarro pese al cartel de prohibido fumar.", "Partida", JOptionPane.INFORMATION_MESSAGE, smoke);
+		} else if (num > 1000 && num < 2000 && pos > 30) {
+			JOptionPane.showMessageDialog(null, "¡Carmen Marlena canta bingo!", "Partida", JOptionPane.INFORMATION_MESSAGE, gritoI);
+			JOptionPane.showMessageDialog(null, "El revisor comprueba su cartón y le dice que no tiene bingo.", "Partida", JOptionPane.INFORMATION_MESSAGE, grumpy);
+		} else if (num > 2000 && num < 5000 && pos < 30) {
+			JOptionPane.showMessageDialog(null, "Llaman a Trinidad y esta responde malamente", "Partida", JOptionPane.INFORMATION_MESSAGE, tlf);
+			if (pos == 29) {
+				JOptionPane.showMessageDialog(null, "El revisor llama la atención a Trinidad.", "Partida", JOptionPane.INFORMATION_MESSAGE, grumpy);
+			}
+		}
 
 	}
 
