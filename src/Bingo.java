@@ -612,12 +612,12 @@ public class Bingo extends JFrame {
 		} else if (pos > 35 && num > 9450 && num < 9950) {
 			JOptionPane.showMessageDialog(null, "¡Carmen Marlena canta bingo! Se termina la partida.", "Partida", JOptionPane.INFORMATION_MESSAGE, grito);
 			nuevaPartida();
-		} else if (num > 0 && num < 1000) {
+		} else if (num > 500 && num < 1000) {
 			JOptionPane.showMessageDialog(null, "Blanca se enciende un cigarro pese al cartel de prohibido fumar.", "Partida", JOptionPane.INFORMATION_MESSAGE, smoke);
 		} else if (num > 1000 && num < 2000 && pos > 30) {
 			JOptionPane.showMessageDialog(null, "¡Carmen Marlena canta bingo!", "Partida", JOptionPane.INFORMATION_MESSAGE, gritoI);
 			JOptionPane.showMessageDialog(null, "El revisor comprueba su cartón y le dice que no tiene bingo.", "Partida", JOptionPane.INFORMATION_MESSAGE, grumpy);
-		} else if (num > 2000 && num < 5000 && pos < 30) {
+		} else if (num > 2000 && num < 3500 && pos < 30) {
 			JOptionPane.showMessageDialog(null, "Llaman a Trinidad y esta responde malamente", "Partida", JOptionPane.INFORMATION_MESSAGE, tlf);
 			if (pos == 29) {
 				JOptionPane.showMessageDialog(null, "El revisor llama la atención a Trinidad.", "Partida", JOptionPane.INFORMATION_MESSAGE, grumpy);

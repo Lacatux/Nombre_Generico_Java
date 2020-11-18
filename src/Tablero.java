@@ -1,11 +1,16 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
+import java.util.Random;
+
 import javax.swing.JButton;
 
 public class Tablero extends JFrame {
@@ -13,7 +18,9 @@ public class Tablero extends JFrame {
 	private JLabel[][] arrayTablero;
 	public static final int FILAS = 9;
 	public static final int COLUMNAS = 10;
-	
+	private int[] numeros;
+	Random random = new Random();
+
 	private JPanel contentPane;
 
 	/**
@@ -37,17 +44,25 @@ public class Tablero extends JFrame {
 	 */
 	public Tablero() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setTitle("Bingo");
+		setResizable(false);
+		setBounds(50, 150, 1350, 650);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(9, 10, 0, 0));
-		
+
 		crear();
+
+		numeros = new int[90];
+
+		comprobar();
+
+
 	}
-	
+
 	private void crear() {
-		
+
 		arrayTablero = new JLabel[FILAS][COLUMNAS];
 		int cont = 1;
 		String contS;
@@ -58,10 +73,48 @@ public class Tablero extends JFrame {
 					arrayTablero[i][j] = new JLabel(contS);
 					contentPane.add(arrayTablero[i][j]);
 					cont++;
+					arrayTablero[i][j].setFont(new Font("Tahoma", Font.BOLD, 25));
+					arrayTablero[i][j].setOpaque(true);
 				}
 			}
 		}
-		
+
+	}
+
+	private void bolas(int pos) {
+		boolean repetido = false;
+		if (pos < 89) {
+			do {
+				repetido = false;
+				if (pos == 0) {
+					numeros[pos] = random.nextInt(89) + 1;
+				} else {
+					numeros[pos] = random.nextInt(89) + 1;
+					for (int i = 0; i < pos; i++) {
+						if (numeros[pos] == numeros[i]) {
+							repetido = true;
+						}
+					}
+				}
+			} while (repetido);
+		}
+	}
+
+	private void comprobar() {
+		int num = 0;
+		for (int k = 1; k < arrayTablero.length; k++) {
+			for (int i = 0; i < FILAS; i++) {
+				for (int j = 0; j < COLUMNAS; j++) {
+					if(k != 90) {
+						bolas(k);
+						num = Integer.parseInt(arrayTablero[i][j].getText());
+						if (numeros[k] == num) {
+							arrayTablero[i][j].setBackground(Color.BLACK);
+						}
+					}
+				}
+			}
+		}
 	}
 
 }
