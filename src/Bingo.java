@@ -78,7 +78,7 @@ public class Bingo extends JFrame {
 	 * Create the frame.
 	 */
 	public Bingo() {
-		//Creación de la ventana *1
+		//Creación de la ventana
 		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\baba\\babaicon.png"));
 		setTitle("Bingo");
 		setResizable(false);
@@ -100,7 +100,7 @@ public class Bingo extends JFrame {
 	//Función que registra los eventos, tal como pulsar un botón
 	private void registrarEventos() {
 		
-		//Instanciación de la variable timer, la cual hace que haya una pequeña pausa cuando se le da al botón "Siguiente número"
+		//Instanciación de la variable timer, la cual hace que haya una pequeña pausa cuando se le da al botón "Siguiente número" *1
 		timer = new javax.swing.Timer(500, new ActionListener() {
 
 			@Override
@@ -137,7 +137,8 @@ public class Bingo extends JFrame {
 				nuevaPartida();				
 			}
 		});
-
+		
+		//Marcar un número en el cartón
 		for (int i = 0; i < FILAS; i++) {
 			for (int j = 0; j < COLUMNAS; j++) {
 				arrayBotones[i][j].addActionListener(new ActionListener() {
@@ -235,7 +236,7 @@ public class Bingo extends JFrame {
 		}
 	}
 	
-	//Contiene todo el contenido el cual se muestra al usuario mediante la ventana *3
+	//Contiene todo el contenido el cual se muestra al usuario mediante la ventana 
 	private void contenidoVentana() {
 
 		arrayBotones = new JButton[FILAS][COLUMNAS];
@@ -312,7 +313,7 @@ public class Bingo extends JFrame {
 
 	}
 
-	//Rellena el array de botones con números y también *4
+	//Rellena el array de botones con números y también *3
 	private void rellenarCarton(JButton[][] arrayBotones) {
 		int numRnd, contFila = 0, repetidos = 0;
 		
@@ -592,7 +593,7 @@ public class Bingo extends JFrame {
 		}
 	}
 	
-	//Funcion a la cual se llama cuando finaliza la partida y cambia todos los botones del cartón por nuestra querida mascota Baba
+	//Funcion a la cual se llama cuando finaliza la partida y cambia todos los botones del cartón por un Baba victorioso
 	private void victoria() {
 		for (int i = 0; i < FILAS; i++) {
 			for (int j = 0; j < COLUMNAS; j++) {

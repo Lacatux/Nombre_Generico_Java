@@ -15,10 +15,9 @@ import java.util.Random;
 
 
 public class Tablero extends JFrame {
-
+	
+	//Declaración de todas las variables necesarias para el programa
 	private JLabel[] arrayTablero;
-	public static final int FILAS = 9;
-	public static final int COLUMNAS = 10;
 	private int[] numeros;
 	Random random = new Random();
 	private javax.swing.Timer timer;
@@ -45,7 +44,7 @@ public class Tablero extends JFrame {
 	 * Create the frame.
 	 */
 	public Tablero() {
-		//Creacion de la ventana		
+		//Temporizador en el cual cada 10 segundos saca una bola *4
 		timer = new javax.swing.Timer(10000, new ActionListener() {
 
 			@Override
@@ -61,7 +60,8 @@ public class Tablero extends JFrame {
 
 			}
 		});
-
+		
+		//Creacion de la ventana
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Bingo");
 		setResizable(false);
@@ -85,7 +85,7 @@ public class Tablero extends JFrame {
 	}
 
 	private void crear() {
-		//Funcion que edita los botones de un tablero mediante un array
+		//Funcion que edita los labels del tablero mediante un array
 		arrayTablero = new JLabel[89];
 		int cont = 1;
 		String contS;

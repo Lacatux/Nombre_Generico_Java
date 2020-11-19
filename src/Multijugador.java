@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 
 public class Multijugador extends JFrame {
 
+	//Declaración de todas las variables necesarias para el programa
 	private JPanel contentPane1;
 	private JButton btnNueva;
 	private JButton btnMenu;
@@ -61,6 +62,7 @@ public class Multijugador extends JFrame {
 	 * Create the frame.
 	 */
 	public Multijugador() {
+		//Creación de la ventana
 		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\baba\\babaicon.png"));
 		setTitle("Bingo");
 		setResizable(false);
@@ -71,15 +73,18 @@ public class Multijugador extends JFrame {
 		contentPane1.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane1);
 		contentPane1.setLayout(new GridLayout(0, 9, 0, 0));
-
+		
+		//Llamada a la función la cual rellena la ventana por completo, incluyendo el cartón del bingo y los botones y labels que tiene
 		contenidoVentana();
 
 		registrarEventos();
 
 	}
 
-
+	//Función que registra los eventos, tal como pulsar un botón
 	private void registrarEventos() {
+		
+		//Devuelve al usuario al menú
 		btnMenu.addActionListener(new ActionListener() {
 
 			@Override
@@ -95,7 +100,8 @@ public class Multijugador extends JFrame {
 				}				
 			}
 		});
-
+		
+		//Crea una nueva partida
 		btnNueva.addActionListener(new ActionListener() {
 
 			@Override
@@ -103,7 +109,8 @@ public class Multijugador extends JFrame {
 				nuevaPartida();				
 			}
 		});
-
+		
+		//Marcar un número en el cartón
 		for (int i = 0; i < FILAS; i++) {
 			for (int j = 0; j < COLUMNAS; j++) {
 				arrayBotones[i][j].addActionListener(new ActionListener() {
@@ -121,7 +128,8 @@ public class Multijugador extends JFrame {
 				});
 			}
 		}
-
+		
+		//Llama a la función linea
 		btnLinea.addActionListener(new ActionListener() {
 
 			@Override
@@ -131,7 +139,8 @@ public class Multijugador extends JFrame {
 
 			}
 		});
-
+		
+		//Llama a la función botonBingo
 		btnBingo.addActionListener(new ActionListener() {
 
 			@Override
@@ -143,7 +152,7 @@ public class Multijugador extends JFrame {
 		});
 	}
 
-	//NUEVA PARTIDA//
+	//Inicia una nueva partida
 	private void nuevaPartida()	{
 		crearCarton(arrayBotones);
 		btnNueva.setEnabled(false);
@@ -152,6 +161,7 @@ public class Multijugador extends JFrame {
 
 	}
 
+	//Vacia el cartón
 	private void reiniciarCarton() {
 		for (int i = 0; i < FILAS; i++) {
 			for (int j = 0; j < COLUMNAS; j++) {
@@ -161,8 +171,8 @@ public class Multijugador extends JFrame {
 			}
 		}
 	}
-	//NUEVA PARTIDA
-
+	
+	//Aquí se instancia todo el contenido de la ventana
 	private void contenidoVentana() {
 
 		arrayBotones = new JButton[FILAS][COLUMNAS];
@@ -212,7 +222,8 @@ public class Multijugador extends JFrame {
 		btnLinea.setEnabled(false);
 
 	}
-
+	
+	//Crea el array en el cuál residen los botones del cartón
 	private void crearArrayBotones() {
 
 		for (int i = 0; i < FILAS; i++) {
@@ -226,8 +237,8 @@ public class Multijugador extends JFrame {
 		baba(false);
 
 	}
-
-	//CREAR CARTON
+	
+	//Crea los espacios del cartón, vacíos y llenos
 	private void crearCarton(JButton[][] arrayBotones) {
 		reiniciarCarton();
 		int numRnd, contFila = 0, repetidos = 0;
@@ -295,7 +306,8 @@ public class Multijugador extends JFrame {
 		baba(false);
 
 	}
-
+	
+	//Introduce un número en el hueco del botón
 	private String introducir_numero(JButton[][] array,int i, int j) {
 		int numero = 0;	
 		do {
@@ -308,7 +320,8 @@ public class Multijugador extends JFrame {
 		} while (comprobarArray(array, numero, i, j));
 		return String.valueOf(numero);
 	}
-
+	
+	//Comprueba que no se repita ningún número en el cartón
 	private boolean comprobarArray(JButton[][] array, int num, int i, int j) {
 
 		if (i == 0) {
@@ -340,7 +353,8 @@ public class Multijugador extends JFrame {
 
 		return false;
 	}
-
+	
+	//Ordena el array de manera descendiente
 	private void ordenarArray(JButton[][] array) {
 
 		int[] col;
@@ -376,8 +390,8 @@ public class Multijugador extends JFrame {
 		}
 
 	}
-	//CREAR CARTON
-
+	
+	//Rellena los huecos vacíos con nuestra querida mascota Baba
 	private void baba(boolean babaWin) {
 		int rnd = 0;
 		for (int i = 0; i < FILAS; i++) {
@@ -418,7 +432,8 @@ public class Multijugador extends JFrame {
 			}
 		}
 	}
-
+	
+	//Si hay una linea, la colorea con un color distinto al blanco
 	private void linea() {
 		int cont;
 		for (int i = 0; i < FILAS; i++) {
@@ -443,7 +458,8 @@ public class Multijugador extends JFrame {
 			}
 		}
 	}
-
+	
+	//Comprueba si todos los botones están pulsados para cantar bingo
 	private void botonBingo() {
 		int cont = 0;
 		for (int i = 0; i < FILAS; i++) {
@@ -457,7 +473,8 @@ public class Multijugador extends JFrame {
 			victoria();
 		}
 	}
-
+	
+	//Cambia todos los huecos vacios por un Baba victorioso
 	private void victoria() {
 		aux = new JButton[FILAS][COLUMNAS];
 		for (int i = 0; i < FILAS; i++) {

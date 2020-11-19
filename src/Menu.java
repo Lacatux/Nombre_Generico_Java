@@ -14,7 +14,8 @@ import java.awt.Font;
 import java.awt.Color;
 
 public class Menu extends JFrame {
-
+	
+	//Declaración de todas las variables necesarias para el programa
 	private JPanel contentPane;
 	private JButton btnSingle;
 	private JButton btnMulti;
@@ -124,7 +125,7 @@ public class Menu extends JFrame {
 		});
 	}	//Fin de la función registrarEventos
 
-
+	//Función la cual se deshace de la ventana principal tras seleccionarla *0
 	public void dispose() {
 		super.dispose();
 	}
