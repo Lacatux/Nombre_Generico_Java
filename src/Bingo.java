@@ -42,13 +42,11 @@ public class Bingo extends JFrame {
 	private ImageIcon neutral = new ImageIcon("images\\baba\\neutral.png");
 	private ImageIcon sleepy = new ImageIcon("images\\baba\\sleepy.png");
 	private ImageIcon win = new ImageIcon("images\\baba\\win.png");
-	private ImageIcon cool = new ImageIcon("images\\abus\\coolgrandma.jpg");
 	private ImageIcon corazon = new ImageIcon("images\\abus\\cora.jpg");
 	private ImageIcon dolarW = new ImageIcon("images\\abus\\grandpadolar.jpg");
 	private ImageIcon grito = new ImageIcon("images\\abus\\grito.jpg");
 	private ImageIcon gritoI = new ImageIcon("images\\abus\\gritoI.jpg");
 	private ImageIcon grumpy = new ImageIcon("images\\abus\\grumpy.jpg");
-	private ImageIcon crazy = new ImageIcon("images\\abus\\locaabu.jpg");
 	private ImageIcon dolarM = new ImageIcon("images\\abus\\moni.jpg");
 	private ImageIcon pan = new ImageIcon("images\\abus\\pangrandma.jpeg");
 	private ImageIcon smoke = new ImageIcon("images\\abus\\smoke.jpg");

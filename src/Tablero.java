@@ -83,7 +83,7 @@ public class Tablero extends JFrame {
 
 	private void bolas(int pos) {
 		boolean repetido = false;
-		if (pos < 89) {
+		if (pos < 90) {
 			do {
 				repetido = false;
 				if (pos == 0) {
@@ -102,19 +102,23 @@ public class Tablero extends JFrame {
 
 	private void comprobar() {
 		int num = 0;
-		for (int k = 1; k < arrayTablero.length; k++) {
-			for (int i = 0; i < FILAS; i++) {
-				for (int j = 0; j < COLUMNAS; j++) {
-					if(k != 90) {
+		int k = 0;
+
+		for (int i = 0; i < FILAS; i++) {
+			for (int j = 0; j < COLUMNAS; j++) {
+				
+					if(k < 89) {
 						bolas(k);
+						System.out.println(k);
 						num = Integer.parseInt(arrayTablero[i][j].getText());
 						if (numeros[k] == num) {
 							arrayTablero[i][j].setBackground(Color.BLACK);
 						}
+						k++;
 					}
 				}
 			}
-		}
+		
 	}
 
 }
