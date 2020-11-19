@@ -1,12 +1,9 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.multi.MultiMenuItemUI;
 
 import java.awt.Toolkit;
 import java.awt.GridLayout;
@@ -23,10 +20,7 @@ public class Menu extends JFrame {
 	private JButton btnMulti;
 	private JButton btnSalir;
 	private JButton btnMultUno;
-	private JButton btnMultDos;
 	private JButton btnAtras;
-	private JLabel spacerUno;
-	private JLabel spacerDos;
 	
 	/**
 	 * Launch the application.
@@ -79,14 +73,7 @@ public class Menu extends JFrame {
 		
 		btnMultUno = new JButton("Contra la máquina");
 		btnMultUno.setFont(new Font("Tahoma", Font.BOLD, 30));
-		
-		btnMultDos = new JButton("Local");
-		btnMultDos.setFont(new Font("Tahoma", Font.BOLD, 30));
-		
-		spacerUno = new JLabel("");
-		
-		spacerDos = new JLabel("");
-		
+		 		
 		btnAtras = new JButton("Atrás");
 		btnAtras.setFont(new Font("Tahoma", Font.BOLD, 30));
 		

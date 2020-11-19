@@ -22,7 +22,8 @@ import javax.swing.WindowConstants;
 import java.awt.Toolkit;
 
 public class Bingo extends JFrame {
-
+	
+	//Declaración de todas las variables necesarias para el programa
 	private JPanel contentPane;
 	private JButton btnNueva;
 	private JButton btnMenu;
@@ -77,6 +78,7 @@ public class Bingo extends JFrame {
 	 * Create the frame.
 	 */
 	public Bingo() {
+		//Creación de la ventana *1
 		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\baba\\babaicon.png"));
 		setTitle("Bingo");
 		setResizable(false);
@@ -87,16 +89,18 @@ public class Bingo extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 9, 0, 0));
-
+		
+		//Llamada a la función la cual rellena la ventana por completo, incluyendo el cartón del bingo y los botones y labels que tiene
 		contenidoVentana();
 
 		registrarEventos();
 
 	}
 
-
+	//Función que registra los eventos, tal como pulsar un botón
 	private void registrarEventos() {
-
+		
+		//Instanciación de la variable timer, la cual hace que haya una pequeña pausa cuando se le da al botón "Siguiente número"
 		timer = new javax.swing.Timer(500, new ActionListener() {
 
 			@Override
@@ -107,7 +111,8 @@ public class Bingo extends JFrame {
 
 			}
 		});
-
+		
+		//Devuelve al usuario al menú
 		btnMenu.addActionListener(new ActionListener() {
 
 			@Override
@@ -123,7 +128,8 @@ public class Bingo extends JFrame {
 				}				
 			}
 		});
-
+		
+		//Crea una nueva partida
 		btnNueva.addActionListener(new ActionListener() {
 
 			@Override
@@ -148,14 +154,15 @@ public class Bingo extends JFrame {
 				});
 			}
 		}
-
+		
+		//Saca la siguiente bola del bingo, llamando a las funcion bolas
 		btnSiguiente.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				btnSiguiente.setEnabled(false);
-				bolas(pos);
+				sacaBola(pos);
 				maquina(pos);
 				pos++;
 
@@ -163,7 +170,8 @@ public class Bingo extends JFrame {
 
 			}
 		});
-
+		
+		//Comprueba que los números seleccionados en el cartón han salido ya
 		btnComprobar.addActionListener(new ActionListener() {
 
 			@Override
@@ -171,7 +179,8 @@ public class Bingo extends JFrame {
 				comprobar(pos);
 			}
 		});
-
+		
+		//Comprueba si hay línea, y la colorea
 		btnLinea.addActionListener(new ActionListener() {
 
 			@Override
@@ -182,7 +191,8 @@ public class Bingo extends JFrame {
 
 			}
 		});
-
+		
+		//Comprueba si hay Bingo
 		btnBingo.addActionListener(new ActionListener() {
 
 			@Override
@@ -195,10 +205,10 @@ public class Bingo extends JFrame {
 		});
 	}
 
-	//NUEVA PARTIDA//
+	//Inicia una nueva partida *2
 	private void nuevaPartida()	{
 		reiniciarCarton();
-		crearCarton(arrayBotones);	
+		rellenarCarton(arrayBotones);	
 		btnNueva.setEnabled(true);
 		btnSiguiente.setEnabled(true);
 		btnComprobar.setEnabled(true);
@@ -209,11 +219,12 @@ public class Bingo extends JFrame {
 		lbl5.setOpaque(true);
 		numeros = new int[90];
 		pos = 0;
-		bolas(pos);
+		sacaBola(pos);
 		pos++;
 
 	}
-
+	
+	//Reinicia el cartón, vaciando todos los números que haya dentro
 	private void reiniciarCarton() {
 		for (int i = 0; i < FILAS; i++) {
 			for (int j = 0; j < COLUMNAS; j++) {
@@ -223,8 +234,8 @@ public class Bingo extends JFrame {
 			}
 		}
 	}
-	//NUEVA PARTIDA
-
+	
+	//Contiene todo el contenido el cual se muestra al usuario mediante la ventana *3
 	private void contenidoVentana() {
 
 		arrayBotones = new JButton[FILAS][COLUMNAS];
@@ -286,7 +297,8 @@ public class Bingo extends JFrame {
 		btnLinea.setEnabled(false);
 
 	}
-
+	
+	//Crea los botones del cartón
 	private void crearArrayBotones() {
 
 		for (int i = 0; i < FILAS; i++) {
@@ -302,7 +314,7 @@ public class Bingo extends JFrame {
 	}
 
 	//CREAR CARTON
-	private void crearCarton(JButton[][] arrayBotones) {
+	private void rellenarCarton(JButton[][] arrayBotones) {
 		int numRnd, contFila = 0, repetidos = 0;
 		do {
 			for (int i = 0; i < 2; i++) {			
@@ -484,7 +496,7 @@ public class Bingo extends JFrame {
 		}
 	}
 
-	private void bolas(int pos) {
+	private void sacaBola(int pos) {
 		boolean repetido = false;
 		if (pos < 89) {
 			do {
