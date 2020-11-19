@@ -21,7 +21,7 @@ public class Menu extends JFrame {
 	private JButton btnSalir;
 	private JButton btnMultUno;
 	private JButton btnAtras;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -42,6 +42,7 @@ public class Menu extends JFrame {
 	 * Create the frame.
 	 */
 	public Menu() {
+		//Creacion de la ventana
 		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\baba\\babaicon.png"));
 		setResizable(false);
 		setTitle("Menu");
@@ -64,50 +65,50 @@ public class Menu extends JFrame {
 		btnMulti.setFont(new Font("Tahoma", Font.BOLD, 30));
 		contentPane.add(btnMulti);
 
-		
+
 
 		btnSalir = new JButton("Salir");
 		btnSalir.setBackground(new Color(221, 160, 221));
 		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 30));
 		contentPane.add(btnSalir);
-		
+
 		btnMultUno = new JButton("Contra la máquina");
 		btnMultUno.setFont(new Font("Tahoma", Font.BOLD, 30));
-		 		
+
 		btnAtras = new JButton("Atrás");
 		btnAtras.setFont(new Font("Tahoma", Font.BOLD, 30));
-		
+
 		registrarEventos();
 	}
 
+	//Función que registra los eventos, tal como pulsar un botón
 	private void registrarEventos() {
+		//Boton para seleccionar el modo de juego de un jugador
 		btnSingle.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
+
 				Bingo bingo = new Bingo();
 				bingo.setVisible(true);
 				dispose();
-				
-
 			}
 		});
 
+		//Boton para seleccionar el modo de juego multijugador
 		btnMulti.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				Multijugador multi = new Multijugador();
 				multi.setVisible(true);
 				dispose();
-				
+
 			}
 		});
 
-
+		//Boton para cerrar el juego
 		btnSalir.addActionListener(new ActionListener() {
 
 			@Override
@@ -121,8 +122,9 @@ public class Menu extends JFrame {
 				}				
 			}
 		});
-	}
-	
+	}	//Fin de la función registrarEventos
+
+
 	public void dispose() {
 		super.dispose();
 	}

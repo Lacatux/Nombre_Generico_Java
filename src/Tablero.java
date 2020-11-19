@@ -45,13 +45,12 @@ public class Tablero extends JFrame {
 	 * Create the frame.
 	 */
 	public Tablero() {
-		
-		
+		//Creacion de la ventana		
 		timer = new javax.swing.Timer(10000, new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				if (cont < 89) {
 					marcar(sacaBola(cont), cont);
 					cont++;
@@ -62,7 +61,7 @@ public class Tablero extends JFrame {
 
 			}
 		});
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Bingo");
 		setResizable(false);
@@ -71,22 +70,22 @@ public class Tablero extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(9, 10, 0, 0));
-		
+
 		crear();
-		
+
 		JLabel spacer = new JLabel("");
 		spacer.setForeground(Color.WHITE);
 		spacer.setBackground(Color.BLACK);
 		contentPane.add(spacer);
 		spacer.setOpaque(true);
 
-		
+
 		timer.start();
 		numeros = new int[89];
 	}
 
 	private void crear() {
-
+		//Funcion que edita los botones de un tablero mediante un array
 		arrayTablero = new JLabel[89];
 		int cont = 1;
 		String contS;
@@ -105,6 +104,8 @@ public class Tablero extends JFrame {
 	}
 
 	private int sacaBola(int pos) {
+		//Funcion que genera un numero del 1 al 90. No repite los numeros que ya hayan salido
+
 		boolean repetido = false;
 
 		do {
@@ -126,6 +127,7 @@ public class Tablero extends JFrame {
 	}
 
 	private void marcar(int numB, int cont) {
+		//Funcion que cambia de color la casilla a la que hace referencia
 		arrayTablero[numB - 1].setBackground(Color.BLACK);
 		arrayTablero[numB - 1].setForeground(Color.WHITE);
 	}
