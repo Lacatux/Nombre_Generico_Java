@@ -176,7 +176,7 @@ public class Bingo extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				comprobar(pos);
+				comprobarNumeros(pos);
 			}
 		});
 		
@@ -186,7 +186,7 @@ public class Bingo extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				comprobar(pos);
+				comprobarNumeros(pos);
 				linea();
 
 			}
@@ -198,7 +198,7 @@ public class Bingo extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				comprobar(pos);
+				comprobarNumeros(pos);
 				botonBingo();
 
 			}
@@ -300,7 +300,6 @@ public class Bingo extends JFrame {
 	
 	//Crea los botones del cartón
 	private void crearArrayBotones() {
-
 		for (int i = 0; i < FILAS; i++) {
 			for (int j = 0; j < COLUMNAS; j++) {
 				arrayBotones[i][j] = new JButton("");
@@ -313,9 +312,10 @@ public class Bingo extends JFrame {
 
 	}
 
-	//CREAR CARTON
+	//Rellena el array de botones con números y también *4
 	private void rellenarCarton(JButton[][] arrayBotones) {
 		int numRnd, contFila = 0, repetidos = 0;
+		
 		do {
 			for (int i = 0; i < 2; i++) {			
 				do {
@@ -330,8 +330,6 @@ public class Bingo extends JFrame {
 							arrayBotones[i][j].setEnabled(true);
 						}					
 					}
-
-
 				} while(contFila < 4);
 			}
 			for (int i = 0; i < COLUMNAS; i++) {
@@ -340,6 +338,7 @@ public class Bingo extends JFrame {
 				}
 			}
 		} while (repetidos == 5);
+		
 		do {
 			contFila = 0;
 			for (int i = 0; i < COLUMNAS; i++) {
@@ -380,7 +379,8 @@ public class Bingo extends JFrame {
 		baba();
 
 	}
-
+	
+	//Devuelve un número el cual se introduce en el array de botones
 	private String introducir_numero(JButton[][] array,int i, int j) {
 		int numero = 0;	
 		do {
@@ -393,7 +393,8 @@ public class Bingo extends JFrame {
 		} while (comprobarArray(array, numero, i, j));
 		return String.valueOf(numero);
 	}
-
+	
+	//Comprueba que no se repita ningún número
 	private boolean comprobarArray(JButton[][] array, int num, int i, int j) {
 
 		if (i == 0) {
@@ -425,7 +426,8 @@ public class Bingo extends JFrame {
 
 		return false;
 	}
-
+	
+	//Ordena los números del array de manera descendiente
 	private void ordenarArray(JButton[][] array) {
 
 		int[] col;
@@ -461,8 +463,8 @@ public class Bingo extends JFrame {
 		}
 
 	}
-	//CREAR CARTON
-
+	
+	//Rellena los huecos en blanco con una imagen al azar de nuestra querida mascota Baba
 	private void baba() {
 		int rnd = 0;
 		for (int i = 0; i < FILAS; i++) {
@@ -495,7 +497,8 @@ public class Bingo extends JFrame {
 			}
 		}
 	}
-
+	
+	//Saca la bola con el número, y cuando salen todas las bolas se lo hace saber al usuario 
 	private void sacaBola(int pos) {
 		boolean repetido = false;
 		if (pos < 89) {
@@ -519,8 +522,9 @@ public class Bingo extends JFrame {
 			btnNueva.setEnabled(true);
 		}
 	}
-
-	private void comprobar(int pos) {
+	
+	//comprueba si los números seleccionados en el cartón han salido ya
+	private void comprobarNumeros(int pos) {
 		int num;
 		boolean sale;
 		for (int i = 0; i < FILAS; i++) {
@@ -544,7 +548,8 @@ public class Bingo extends JFrame {
 			}
 		}
 	}
-
+	
+	//Comprueba si hay línea y cambia el color
 	private void linea() {
 		int cont;
 		for (int i = 0; i < FILAS; i++) {
@@ -569,7 +574,8 @@ public class Bingo extends JFrame {
 			}
 		}
 	}
-
+	
+	//Comprueba si hay bingo
 	private void botonBingo() {
 		int cont = 0;
 		for (int i = 0; i < FILAS; i++) {
@@ -585,7 +591,8 @@ public class Bingo extends JFrame {
 			JOptionPane.showMessageDialog(null, "Maria Luisa te amenaza con la sartén por cantar un bingo.", "Partida", JOptionPane.INFORMATION_MESSAGE, pan);
 		}
 	}
-
+	
+	//Funcion a la cual se llama cuando finaliza la partida y cambia todos los botones del cartón por nuestra querida mascota Baba
 	private void victoria() {
 		for (int i = 0; i < FILAS; i++) {
 			for (int j = 0; j < COLUMNAS; j++) {
@@ -611,7 +618,8 @@ public class Bingo extends JFrame {
 		}
 
 	}
-
+	
+	//Funcion la cual implementa los eventos los cuales permiten que se juegue en contra de la máquina
 	private void maquina(int pos) {
 
 		int num = random.nextInt(10000) + 1;
